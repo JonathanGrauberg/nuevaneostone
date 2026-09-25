@@ -1,26 +1,159 @@
 @import "tailwindcss";
 
+/* Tokens de marca. Oscuro por defecto; claro con [data-theme="light"]. */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg: #0e0d0c;
+  --surface: #171614;
+  --fg: #ece8e1;
+  --fg-soft: #cfcac2;
+  --muted: #8a857d;
+  --line: rgba(255, 255, 255, 0.09);
+  --line-strong: rgba(255, 255, 255, 0.22);
+  --stone: #b5ab9e;
+  --accent: #de0a0a;
+  /* Fondo real de la página: se resuelve acá y se hereda tal cual, aun dentro de .force-dark */
+  --page: var(--bg);
+  color-scheme: dark;
+}
+
+:root[data-theme="light"] {
+  --bg: #f3f0ea;
+  --surface: #e9e5dd;
+  --fg: #171614;
+  --fg-soft: #36332f;
+  --muted: #6b665e;
+  --line: rgba(0, 0, 0, 0.1);
+  --line-strong: rgba(0, 0, 0, 0.25);
+  --stone: #8c8173;
+  --accent: #c40808;
+  --page: var(--bg);
+  color-scheme: light;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-fg: var(--fg);
+  --color-fg-soft: var(--fg-soft);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-stone: var(--stone);
+  --color-accent: var(--accent);
+  --font-display: var(--font-montserrat), system-ui, sans-serif;
+  --font-sans: var(--font-roboto), system-ui, sans-serif;
+  --ease-lux: cubic-bezier(0.16, 1, 0.3, 1);
+  --radius-*: initial;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  font-weight: 300;
+}
+
+::selection {
+  background: var(--accent);
+  color: #fff;
+}
+
+@layer components {
+  /* Etiqueta chica en versalitas: "01 — COLECCIÓN" */
+  .eyebrow {
+    font-family: var(--font-display);
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .link-line {
+    font-family: var(--font-display);
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6em;
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--accent);
+    transition: gap 0.5s var(--ease-lux);
+  }
+  .link-line:hover {
+    gap: 1.1em;
+  }
+  .btn-outline {
+    font-family: var(--font-display);
+    font-size: 11px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    padding: 14px 18px;
+    border: 1px solid var(--line-strong);
+    transition: background-color 0.4s, color 0.4s, border-color 0.4s;
+  }
+  .btn-outline:hover {
+    background: var(--fg);
+    color: var(--bg);
+    border-color: var(--fg);
+  }
+  .container-x {
+    width: 100%;
+    max-width: 1440px;
+    margin-inline: auto;
+    padding-inline: clamp(20px, 5vw, 80px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* El logo es blanco: en modo claro se invierte. */
+:root[data-theme="light"] .logo {
+  filter: invert(1);
+}
+
+/* Scroll horizontal sin barra visible (índice de colecciones). */
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Mapa de Google en tonos oscuros (solo en modo oscuro). */
+:root:not([data-theme="light"]) .map-dark {
+  filter: invert(0.92) hue-rotate(180deg) grayscale(0.85) contrast(0.9);
+}
+
+/* Secciones que siempre van en oscuro (hero de colecciones, tipo cine), aun en modo claro. */
+.force-dark {
+  --bg: #0e0d0c;
+  --surface: #171614;
+  --fg: #ece8e1;
+  --fg-soft: #cfcac2;
+  --muted: #8a857d;
+  --line: rgba(255, 255, 255, 0.09);
+  --line-strong: rgba(255, 255, 255, 0.22);
+  --stone: #b5ab9e;
+  --accent: #de0a0a;
+  background: var(--bg);
+  color: var(--fg);
+}
+
+/* Logos de colección: algunos traen fondo negro; "screen" lo vuelve transparente. */
+.logo-coleccion {
+  mix-blend-mode: screen;
 }
