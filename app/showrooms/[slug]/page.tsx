@@ -7,6 +7,7 @@ import { ImageReveal, Reveal } from "@/components/motion/Reveal";
 import { WordReveal } from "@/components/motion/WordReveal";
 import { DistanceFromYou } from "@/components/showrooms/DistanceFromYou";
 import { OpenNow } from "@/components/showrooms/OpenNow";
+import { ImagenPendiente } from "@/components/ui/ImagenPendiente";
 import { site } from "@/data/site";
 import { getShowroom, getShowroomSlugs, showroomsCercanos } from "@/lib/content";
 import { formatearHorario } from "@/lib/horarios";
@@ -39,15 +40,19 @@ export default async function ShowroomPage({ params }: PageProps<"/showrooms/[sl
 
   const portada = s.frente ?? s.galeria[0];
   const cercanos = showroomsCercanos(s);
-  const whatsapp = s.whatsapp ?? (s.casaCentral ? site.whatsapp : undefined);
-  const mapa = `https://maps.google.com/maps?q=${encodeURIComponent(`${s.direccion}, ${s.ciudad}, ${s.provincia}`)}&z=15&output=embed`;
+  // Showrooms recién cargados pueden no tener todavía dirección, teléfono o email.
+  const sinContacto = s.telefonos.length === 0 && !s.email;
+  const whatsapp = s.whatsapp ?? (s.casaCentral || sinContacto ? site.whatsapp : undefined);
+  const consulta = s.direccion ? `${s.direccion}, ${s.ciudad}, ${s.provincia}` : `${s.ciudad}, ${s.provincia}, Argentina`;
+  const mapa = `https://maps.google.com/maps?q=${encodeURIComponent(consulta)}&z=${s.direccion ? 15 : 12}&output=embed`;
+  const comoLlegar = s.mapsUrl ?? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(consulta)}`;
 
   // SEO local: ficha de negocio para Google.
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "FurnitureStore",
     name: `Neostone ${s.ciudad} · ${s.nombre}`,
-    address: { "@type": "PostalAddress", streetAddress: s.direccion, addressLocality: s.ciudad, addressRegion: s.provincia, addressCountry: "AR" },
+    address: { "@type": "PostalAddress", ...(s.direccion && { streetAddress: s.direccion }), addressLocality: s.ciudad, addressRegion: s.provincia, addressCountry: "AR" },
     geo: { "@type": "GeoCoordinates", latitude: s.geo.lat, longitude: s.geo.lng },
     telephone: s.telefonos[0]?.numero,
     email: s.email,
@@ -62,7 +67,11 @@ export default async function ShowroomPage({ params }: PageProps<"/showrooms/[sl
 
       {/* ─── HERO ─────────────────────────────────────────── */}
       <section className="relative h-[78svh] min-h-[560px] overflow-hidden">
-        {portada && <Image src={portada} alt={`Frente del showroom de ${s.ciudad}`} fill priority sizes="100vw" quality={90} className="scale-105 object-cover" />}
+        {portada ? (
+          <Image src={portada} alt={`Frente del showroom de ${s.ciudad}`} fill priority sizes="100vw" quality={90} className="scale-105 object-cover" />
+        ) : (
+          <ImagenPendiente texto="Foto del local próximamente" alinear="esquina" />
+        )}
         <div className="absolute inset-0" style={{ background: "linear-gradient(0deg, var(--bg) 0%, transparent 60%)" }} />
         <div className="absolute inset-x-0 top-0 h-48" style={{ background: "linear-gradient(180deg, color-mix(in srgb, var(--bg) 85%, transparent), transparent)" }} />
         <div
@@ -78,7 +87,11 @@ export default async function ShowroomPage({ params }: PageProps<"/showrooms/[sl
           </p>
           <div>
             <div className="mb-5">
-              {s.estado === "proximamente" ? <span className="eyebrow !text-accent">Próximamente</span> : <OpenNow horarios={s.horarios} />}
+              {s.estado === "proximamente" ? (
+                <span className="eyebrow !text-accent">Próximamente</span>
+              ) : (
+                s.horarios.length > 0 && <OpenNow horarios={s.horarios} />
+              )}
             </div>
             <WordReveal as="h1" trigger="mount" lines={[s.ciudad]} className="font-display text-6xl leading-none font-extralight md:text-8xl" />
             <Reveal delay={0.3}>
@@ -96,7 +109,27 @@ export default async function ShowroomPage({ params }: PageProps<"/showrooms/[sl
         <Reveal className="md:col-span-5">
           <dl className="text-[15px]">
             {[
-              ["Dirección", <span key="d">{s.direccion}<br />{s.ciudad}, {s.provincia}</span>],
+              [
+                "Dirección",
+                <span key="d">
+                  {s.direccion ?? <span className="text-muted">A confirmar</span>}
+                  <br />
+                  {s.ciudad}, {s.provincia}
+                </span>,
+              ],
+              ...(sinContacto
+                ? [
+                    [
+                      "Contacto",
+                      <span key="c">
+                        Datos del local próximamente.{" "}
+                        <a href={`https://wa.me/${site.whatsapp}`} target="_blank" rel="noopener" className="text-fg underline decoration-accent underline-offset-4">
+                          Mientras tanto, escribinos.
+                        </a>
+                      </span>,
+                    ] as const,
+                  ]
+                : []),
               [
                 "Teléfono",
                 <span key="t" className="flex flex-col gap-1">
@@ -123,7 +156,9 @@ export default async function ShowroomPage({ params }: PageProps<"/showrooms/[sl
               ...(s.email
                 ? [["Email", <a key="e" href={`mailto:${s.email}`} className="break-all transition-colors hover:text-accent">{s.email}</a>] as const]
                 : []),
-            ].map(([dt, dd]) => (
+            ]
+              .filter(([dt]) => !(dt === "Teléfono" && s.telefonos.length === 0) && !(dt === "Horario" && s.horarios.length === 0))
+              .map(([dt, dd]) => (
               <div key={dt as string} className="grid grid-cols-[110px_1fr] gap-4 border-t border-line py-4 last:border-b">
                 <dt className="eyebrow pt-0.5">{dt}</dt>
                 <dd className="text-fg-soft">{dd}</dd>
@@ -131,7 +166,7 @@ export default async function ShowroomPage({ params }: PageProps<"/showrooms/[sl
             ))}
           </dl>
           <div className="mt-8 flex flex-wrap gap-2">
-            <a href={s.mapsUrl} target="_blank" rel="noopener" className="btn-outline">
+            <a href={comoLlegar} target="_blank" rel="noopener" className="btn-outline">
               Cómo llegar ↗
             </a>
             {whatsapp && (
@@ -172,14 +207,19 @@ export default async function ShowroomPage({ params }: PageProps<"/showrooms/[sl
         </section>
       )}
 
-      {/* ─── GALERÍA ──────────────────────────────────────── */}
-      {s.galeria.length > 0 && (
-        <section className="container-x pb-24">
-          <div className="mb-8 border-b border-line pb-4">
-            <h2 className="eyebrow">El showroom</h2>
-          </div>
-          <div className="grid auto-rows-[180px] grid-cols-2 gap-px md:auto-rows-[240px] md:grid-cols-4">
-            {s.galeria.map((src, i) => (
+      {/* ─── GALERÍA (con lugares reservados si todavía no hay fotos) ─── */}
+      <section className="container-x pb-24">
+        <div className="mb-8 border-b border-line pb-4">
+          <h2 className="eyebrow">El showroom</h2>
+        </div>
+        <div className="grid auto-rows-[180px] grid-cols-2 gap-px md:auto-rows-[240px] md:grid-cols-4">
+          {s.galeria.length === 0 &&
+            Array.from({ length: 5 }, (_, i) => (
+              <div key={i} className={`relative overflow-hidden ${i === 0 ? "col-span-2 row-span-2" : ""} ${i === 3 ? "md:col-span-2" : ""}`}>
+                <ImagenPendiente texto={i === 0 ? "Fotos del showroom próximamente" : "Próximamente"} compacto={i !== 0} />
+              </div>
+            ))}
+          {s.galeria.map((src, i) => (
               <ImageReveal
                 key={src + i}
                 delay={(i % 4) * 0.08}
@@ -194,9 +234,8 @@ export default async function ShowroomPage({ params }: PageProps<"/showrooms/[sl
                 />
               </ImageReveal>
             ))}
-          </div>
-        </section>
-      )}
+        </div>
+      </section>
 
       {/* ─── CERCANOS ─────────────────────────────────────── */}
       <section className="border-t border-line">

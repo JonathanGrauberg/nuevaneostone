@@ -4,10 +4,14 @@ import { Reveal } from "@/components/motion/Reveal";
 import { ShowroomFinder } from "@/components/showrooms/ShowroomFinder";
 import { getShowroomsResumen } from "@/lib/content";
 
-export const metadata: Metadata = {
-  title: "Showrooms",
-  description: "Encontrá el showroom Neostone más cercano. Presencia en Buenos Aires, Córdoba, Entre Ríos, Santa Fe, Chubut, Río Negro, Salta, San Juan y San Luis.",
-};
+// La descripción se arma con las provincias reales de data/showrooms.ts.
+export function generateMetadata(): Metadata {
+  const provincias = [...new Set(getShowroomsResumen().map((s) => s.provincia))].sort((a, b) => a.localeCompare(b, "es"));
+  return {
+    title: "Showrooms",
+    description: `Encontrá el showroom Neostone más cercano. Presencia en ${provincias.slice(0, -1).join(", ")} y ${provincias.at(-1)}.`,
+  };
+}
 
 export default function ShowroomsPage() {
   const showrooms = getShowroomsResumen();

@@ -9,7 +9,8 @@ export const heroSlides = [
 ];
 
 export const nosotros = {
-  imagen: wp("2025/05/frente-neo.jpg"),
+  // Foto del frente de la planta (Crespo). Provisoria (upscale) hasta tener la definitiva.
+  imagen: "/images/home/frente-planta-crespo.jpg",
   titulo: ["Tu hogar es el reflejo de tu mundo.", "Lo fabricamos con ese cuidado."],
   texto: [
     "Somos una empresa entrerriana, ubicada en el Parque Industrial de Crespo, con más de 20 años de trayectoria. Diseñamos y fabricamos amoblamientos de cocina, placards, vestidores, mesadas y baños.",

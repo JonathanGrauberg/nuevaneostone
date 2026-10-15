@@ -88,8 +88,8 @@ export const showrooms: ShowroomInput[] = [
       { nombre: "Natividad Sierra", rol: "Ventas", foto: asset("nati-sierra.png") },
       { nombre: "Micaela Fernández Valle", rol: "Ventas", foto: asset("mica-fer.png") },
     ],
-    // ⚠ Galería compartida con Mar del Plata, Córdoba, Villa María y San Juan. Confirmar.
-    galeria: galeria("2026/02", ["1", "2", "3", "4", "5"]),
+    // Sin fotos todavía (el sitio anterior mostraba un cartel de "Próximamente"). Cargar las reales acá.
+    galeria: [],
   },
   {
     slug: "general-villegas",
@@ -158,8 +158,8 @@ export const showrooms: ShowroomInput[] = [
       { nombre: "Lara", rol: "Ventas", foto: asset("Lara-mdp.png") },
     ],
     frente: asset("frente-mardel.png"),
-    // ⚠ Galería compartida. Confirmar.
-    galeria: galeria("2026/02", ["1", "2", "3", "4", "5"]),
+    // Sin fotos todavía (el sitio anterior mostraba un cartel de "Próximamente"). Cargar las reales acá.
+    galeria: [],
   },
   {
     slug: "pergamino",
@@ -272,8 +272,8 @@ export const showrooms: ShowroomInput[] = [
       { nombre: "Ignacio S.", rol: "Ventas", foto: asset("ignacio-s.png") },
     ],
     frente: asset("frente-cordoba-full.png"),
-    // ⚠ Galería compartida. Confirmar.
-    galeria: galeria("2026/02", ["1", "2", "3", "4", "5"]),
+    // Sin fotos todavía (el sitio anterior mostraba un cartel de "Próximamente"). Cargar las reales acá.
+    galeria: [],
   },
   {
     slug: "villa-maria",
@@ -298,8 +298,8 @@ export const showrooms: ShowroomInput[] = [
       { nombre: "Andrés Franco", rol: "Propietario y Administración", foto: asset("andres-f.png") },
       { nombre: "Franco", rol: "Ventas", foto: asset("franco-vm.png") },
     ],
-    // ⚠ Galería compartida. Confirmar.
-    galeria: galeria("2026/02", ["1", "2", "3", "4", "5"]),
+    // Sin fotos todavía (el sitio anterior mostraba un cartel de "Próximamente"). Cargar las reales acá.
+    galeria: [],
   },
   {
     slug: "salta",
@@ -344,8 +344,8 @@ export const showrooms: ShowroomInput[] = [
       { nombre: "Amanda", rol: "Ventas", foto: asset("amanda-sj.png") },
       { nombre: "Víctor", rol: "Ventas", foto: asset("victor-sj.png") },
     ],
-    // ⚠ Galería compartida. Confirmar.
-    galeria: galeria("2026/02", ["1", "2", "3", "4", "5"]),
+    // Sin fotos todavía (el sitio anterior mostraba un cartel de "Próximamente"). Cargar las reales acá.
+    galeria: [],
   },
   {
     slug: "san-luis",
@@ -415,4 +415,94 @@ export const showrooms: ShowroomInput[] = [
     frente: asset("barilocheportada2.png"),
     galeria: galeria("2026/07", ["1", "2", "3", "4"]),
   },
+
+  // ─── PLAZAS NUEVAS (oct 2026) ─────────────────────────────────────────
+  // TODO: completar nombre del local, dirección, teléfonos, email, horarios,
+  // staff y fotos (frente + galería). Mientras falten, la página muestra
+  // "Imagen próximamente" y "Datos del local próximamente".
+  {
+    slug: "zarate",
+    ciudad: "Zárate",
+    provincia: "Buenos Aires",
+    nombre: "Neostone Zárate",
+    estado: "activo",
+    geo: { lat: -34.0981, lng: -59.0286 }, // aprox.
+    telefonos: [],
+    horarios: [],
+    staff: [],
+    galeria: [],
+  },
+  {
+    slug: "san-nicolas",
+    ciudad: "San Nicolás",
+    provincia: "Buenos Aires",
+    nombre: "Neostone San Nicolás",
+    estado: "activo",
+    geo: { lat: -33.3342, lng: -60.2253 }, // aprox.
+    telefonos: [],
+    horarios: [],
+    staff: [],
+    galeria: [],
+  },
+  {
+    slug: "catamarca",
+    ciudad: "Catamarca",
+    provincia: "Catamarca",
+    nombre: "Neostone Catamarca",
+    estado: "activo",
+    geo: { lat: -28.4696, lng: -65.7852 }, // aprox.
+    telefonos: [],
+    horarios: [],
+    staff: [],
+    galeria: [],
+  },
+  {
+    slug: "rio-gallegos",
+    ciudad: "Río Gallegos",
+    provincia: "Santa Cruz",
+    nombre: "Neostone Río Gallegos",
+    estado: "activo",
+    geo: { lat: -51.623, lng: -69.2168 }, // aprox.
+    telefonos: [],
+    horarios: [],
+    staff: [],
+    galeria: [],
+  },
+  {
+    slug: "villa-la-angostura",
+    ciudad: "Villa La Angostura",
+    provincia: "Neuquén",
+    nombre: "Neostone Villa La Angostura",
+    estado: "activo",
+    geo: { lat: -40.7616, lng: -71.646 }, // aprox.
+    telefonos: [],
+    horarios: [],
+    staff: [],
+    galeria: [],
+  },
+  {
+    slug: "santa-fe",
+    ciudad: "Santa Fe",
+    provincia: "Santa Fe",
+    nombre: "Neostone Santa Fe",
+    estado: "proximamente",
+    geo: { lat: -31.6333, lng: -60.7 }, // aprox.
+    telefonos: [],
+    horarios: [],
+    staff: [],
+    galeria: [],
+  },
+  {
+    slug: "neuquen",
+    ciudad: "Neuquén",
+    provincia: "Neuquén",
+    nombre: "Neostone Neuquén",
+    estado: "proximamente",
+    geo: { lat: -38.9516, lng: -68.0591 }, // aprox.
+    telefonos: [],
+    horarios: [],
+    staff: [],
+    galeria: [],
+  },
+  // TODO: Corrientes y Resistencia figuran con "?" en las observaciones. Sumar cuando se confirmen.
 ];

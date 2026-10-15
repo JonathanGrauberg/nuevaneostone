@@ -1,7 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ProductCard } from "@/components/cards/ProductCard";
+import { ColeccionesScroll } from "@/components/home/ColeccionesScroll";
 import { Counter } from "@/components/home/Counter";
+import { DelPlanoATuCasa } from "@/components/home/DelPlanoATuCasa";
 import { HomeHero } from "@/components/home/HomeHero";
 import { ImageReveal, Reveal } from "@/components/motion/Reveal";
 import { WordReveal } from "@/components/motion/WordReveal";
@@ -25,80 +26,72 @@ export default function Home() {
       <HomeHero slides={heroSlides} />
 
       {/* ─── 01 NOSOTROS ──────────────────────────────────── */}
-      <section className="container-x grid gap-12 py-28 md:grid-cols-12 md:py-40">
-        <ImageReveal className="relative aspect-[4/5] md:col-span-5">
-          <Image src={nosotros.imagen} alt="Planta Neostone en el Parque Industrial de Crespo" fill sizes="(min-width: 768px) 40vw, 100vw" className="object-cover" />
-        </ImageReveal>
-        <div className="flex flex-col justify-center md:col-span-6 md:col-start-7">
-          <Reveal>
-            <p className="eyebrow">01 — Nosotros</p>
-          </Reveal>
-          <WordReveal
-            lines={[nosotros.titulo[0], nosotros.titulo[1].split(" ").map((w) => `*${w}*`).join(" ")]}
-            className="mt-6 font-display text-3xl leading-tight font-extralight md:text-5xl"
-            stagger={0.04}
+      {/* Foto del frente a sangre, con degradé hacia el texto (derecha) y contadores debajo */}
+      <section className="container-x pt-24 pb-12 md:pt-36 md:pb-16">
+        <div className="relative overflow-hidden bg-surface">
+          <ImageReveal className="relative aspect-[4/3] md:absolute md:inset-y-0 md:left-0 md:aspect-auto md:w-[62%]">
+            <Image
+              src={nosotros.imagen}
+              alt="Frente de la planta Neostone en el Parque Industrial de Crespo"
+              fill
+              sizes="(min-width: 768px) 60vw, 100vw"
+              className="object-cover object-[38%_50%]"
+            />
+          </ImageReveal>
+          {/* Degradé: en desktop de izquierda (foto) a derecha (texto); en mobile, de la foto hacia abajo */}
+          <div
+            className="pointer-events-none absolute inset-0 hidden md:block"
+            style={{
+              background:
+                "linear-gradient(90deg, color-mix(in srgb, var(--bg) 15%, transparent) 0%, color-mix(in srgb, var(--bg) 35%, transparent) 30%, color-mix(in srgb, var(--bg) 85%, transparent) 50%, var(--bg) 60%)",
+            }}
           />
-          {nosotros.texto.map((p, i) => (
-            <Reveal key={i} delay={0.1 + i * 0.1}>
-              <p className="mt-6 max-w-lg leading-relaxed text-fg-soft">{p}</p>
-            </Reveal>
-          ))}
-          <Reveal delay={0.3} className="mt-12 grid grid-cols-3">
+          <div
+            className="pointer-events-none absolute inset-x-0 top-0 aspect-[4/3] md:hidden"
+            style={{ background: "linear-gradient(0deg, var(--bg) 0%, transparent 45%)" }}
+          />
+
+          <div className="relative grid md:min-h-[600px] md:grid-cols-12">
+            <div className="flex flex-col justify-center px-6 pb-12 md:col-span-6 md:col-start-7 md:py-20 md:pr-14 md:pl-0">
+              <Reveal>
+                <p className="eyebrow">01 — Nosotros</p>
+              </Reveal>
+              <WordReveal
+                lines={[nosotros.titulo[0], nosotros.titulo[1].split(" ").map((w) => `*${w}*`).join(" ")]}
+                className="mt-6 font-display text-3xl leading-tight font-extralight md:text-5xl"
+                stagger={0.04}
+              />
+              {nosotros.texto.map((p, i) => (
+                <Reveal key={i} delay={0.1 + i * 0.1}>
+                  <p className="mt-6 max-w-lg leading-relaxed text-fg-soft">{p}</p>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+
+          {/* Contadores */}
+          <Reveal className="relative grid grid-cols-3 border-t border-line bg-bg px-6 py-8 md:px-14 md:py-10">
             {[
-              { n: site.cifras.anios, p: "+", l: "Años" },
+              { n: site.cifras.anios, p: "+", l: "Años de experiencia" },
               { n: site.cifras.garantia, p: "", l: "Años de garantía" },
-              { n: showrooms.length, p: "", l: "Showrooms" },
+              { n: showrooms.length, p: "", l: "Showrooms en el país" },
             ].map((c) => (
-              <div key={c.l} className="border-t border-line pt-4">
-                <p className="font-display text-4xl font-extralight md:text-5xl">
+              <div key={c.l}>
+                <p className="font-display text-4xl font-extralight md:text-6xl">
                   <Counter to={c.n} prefix={c.p} />
                 </p>
-                <p className="eyebrow mt-2">{c.l}</p>
+                <p className="eyebrow mt-3 leading-relaxed">{c.l}</p>
               </div>
             ))}
           </Reveal>
         </div>
       </section>
 
-      {/* ─── 02 COLECCIONES ───────────────────────────────── */}
-      <section className="pb-28 md:pb-40">
-        <div className="container-x mb-10 flex items-end justify-between">
-          <div>
-            <p className="eyebrow">02 — Colecciones</p>
-            <WordReveal lines={["Una colección para cada", "*forma* *de* *habitar.*"]} className="mt-6 font-display text-3xl leading-tight font-extralight md:text-5xl" />
-          </div>
-          <Link href="/colecciones" className="link-line hidden md:inline-flex">
-            Ver todas →
-          </Link>
-        </div>
-        <div className="no-scrollbar flex snap-x gap-px overflow-x-auto px-[clamp(20px,5vw,80px)]">
-          {colecciones.map((c, i) => (
-            <Reveal key={c.slug} delay={i * 0.06} className="w-[70vw] shrink-0 snap-start sm:w-[42vw] lg:w-[23vw]">
-              <ProductCard href={`/colecciones/${c.slug}`} nombre={c.nombre} bajada={c.bajada} imagen={c.portada} indice={i} />
-            </Reveal>
-          ))}
-        </div>
-      </section>
+      {/* ─── 02 COLECCIONES (scroll horizontal anclado) ────── */}
+      <ColeccionesScroll colecciones={colecciones.map(({ slug, nombre, bajada, portada }) => ({ slug, nombre, bajada, portada }))} />
 
-      {/* ─── 03 EXPERIENCIA VR ────────────────────────────── */}
-      <section className="relative h-[80svh] min-h-[520px] overflow-hidden">
-        <Image src={colecciones.find((c) => c.slug === "london")?.renders[0]?.src ?? heroSlides[0]} alt="" fill sizes="100vw" className="object-cover" />
-        <div className="absolute inset-0" style={{ background: "linear-gradient(90deg, var(--bg) 15%, color-mix(in srgb, var(--bg) 40%, transparent) 60%, transparent)" }} />
-        <div className="absolute inset-0" style={{ background: "linear-gradient(0deg, var(--bg), transparent 30%, transparent 70%, var(--bg))" }} />
-        <div className="container-x relative flex h-full flex-col justify-center">
-          <p className="eyebrow">03 — Experiencia VR</p>
-          <WordReveal lines={["Viví tu cocina", "*antes* *de* *que* *exista.*"]} className="mt-6 max-w-xl font-display text-4xl leading-tight font-extralight md:text-6xl" />
-          <Reveal delay={0.3}>
-            <p className="mt-6 max-w-md text-fg-soft">
-              Con lentes de realidad virtual recorrés tu proyecto en escala real: abrís cajones, mirás texturas y confirmás cada detalle antes de fabricarlo.
-            </p>
-            <Link href="/experiencia-vr" className="group mt-10 inline-flex items-center gap-4 font-display text-[11px] tracking-[0.24em] uppercase">
-              <span className="flex h-12 w-12 items-center justify-center border border-fg transition-colors duration-500 group-hover:bg-fg group-hover:text-bg">▶</span>
-              Explorar en 360°
-            </Link>
-          </Reveal>
-        </div>
-      </section>
+      {/* ─── 03 EXPERIENCIA VR: del plano a tu casa ──────── */}
+      <DelPlanoATuCasa />
 
       {/* ─── 04 POR QUÉ NEOSTONE ──────────────────────────── */}
       <section className="container-x py-28 md:py-40">

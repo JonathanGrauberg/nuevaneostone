@@ -38,3 +38,10 @@ El orden del array es el orden en el sitio. `hero` = imagen horizontal del fondo
 
 Las imágenes se recortan solas en cada formato: se suben tal cual, sin pasar por Canva.
 (Por ahora se sirven desde el WordPress anterior; ver `lib/img.ts`.)
+
+## Sección "Del plano a tu casa" (home)
+
+El plano que se dibuja con el scroll está **calcado del render** `Cocina-London-Camara-2`
+(`components/home/calcoLondon.ts`), por eso coincide línea por línea al fundirse con la foto.
+Si se quiere usar otro render, hay que volver a calcar las líneas sobre la nueva imagen;
+cambiar solo la foto haría que el plano deje de coincidir.

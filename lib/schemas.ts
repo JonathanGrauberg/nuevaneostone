@@ -40,8 +40,8 @@ export const coleccionSchema = z.object({
 });
 
 export const provincias = [
-  "Buenos Aires", "Chubut", "Córdoba", "Entre Ríos", "Río Negro",
-  "Salta", "San Juan", "San Luis", "Santa Fe",
+  "Buenos Aires", "Catamarca", "Chubut", "Córdoba", "Entre Ríos", "Neuquén",
+  "Río Negro", "Salta", "San Juan", "San Luis", "Santa Cruz", "Santa Fe",
 ] as const;
 
 export const dias = ["lun-vie", "lun-sab", "lun-dom", "sab", "dom"] as const;
@@ -54,9 +54,11 @@ export const showroomSchema = z.object({
   razonSocial: z.string().optional(),
   casaCentral: z.boolean().optional(),
   estado: z.enum(["activo", "proximamente", "cerrado"]),
-  direccion: z.string().min(1),
+  /** Opcional mientras no se tenga: la página muestra "Dirección a confirmar". */
+  direccion: z.string().min(1).optional(),
   geo: z.object({ lat: z.number(), lng: z.number() }),
-  mapsUrl: z.url(),
+  /** Opcional: si falta, "Cómo llegar" busca la dirección (o la ciudad) en Google Maps. */
+  mapsUrl: z.url().optional(),
   telefonos: z.array(z.object({ texto: z.string(), numero: z.string().regex(/^\+\d{10,13}$/) })),
   whatsapp: z.string().regex(/^\d{12,13}$/).optional(),
   email: z.email().optional(),
@@ -68,6 +70,7 @@ export const showroomSchema = z.object({
     }),
   ),
   staff: z.array(z.object({ nombre: z.string(), rol: z.string(), foto: imagen.optional() })),
+  /** Sin frente ni galería se muestran placeholders de "Imagen próximamente". */
   frente: imagen.optional(),
   galeria: z.array(imagen),
 });
