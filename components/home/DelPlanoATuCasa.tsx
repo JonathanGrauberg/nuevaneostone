@@ -26,9 +26,11 @@ const subscribeMQ = (cb: () => void) => {
 };
 
 // Etapas del recorrido (0 → 1)
-const DIBUJO_FIN = 0.58; // hasta acá se dibujan los planos
-const RENDER_DESDE = 0.6; // desde acá aparece el render real
-const RENDER_HASTA = 0.86;
+// El último tramo (LINEAS_FIN → 1) es la pausa con la cocina terminada en pantalla.
+const DIBUJO_FIN = 0.46; // hasta acá se dibujan los planos
+const RENDER_DESDE = 0.48; // desde acá aparece el render real
+const RENDER_HASTA = 0.66; // render completo
+const LINEAS_FIN = 0.78; // las líneas terminan de esfumarse
 
 const pasos = [
   { n: "01", t: "Diseño a medida", d: "Cada proyecto parte de tus medidas y tu forma de usar el espacio." },
@@ -84,7 +86,7 @@ export function DelPlanoATuCasa() {
 
   // Un único valor de progreso (0 → 1) que alimenta todo el dibujo.
   const p = useMotionValue(0);
-  const { scrollYProgress } = useScroll({ target: seccionRef, offset: ["start start", "end end"] });
+  const { scrollYProgress } = useScroll({ target: seccionRef, offset: ["start 0.65", "end end"] });
   const suave = useSpring(scrollYProgress, { stiffness: 120, damping: 28, mass: 0.4 });
 
   useEffect(() => {
@@ -100,13 +102,13 @@ export function DelPlanoATuCasa() {
   }, [anclado, enVista, reducir, p]);
 
   // Las líneas siguen visibles sobre la foto un momento (se ve que coinciden) y después se esfuman.
-  const linea = useTransform(p, [RENDER_DESDE, RENDER_HASTA, 1], [1, 0.75, 0.12]);
+  const linea = useTransform(p, [RENDER_DESDE, RENDER_HASTA, LINEAS_FIN], [1, 0.75, 0.12]);
   const renderOpacidad = useTransform(p, [RENDER_DESDE, RENDER_HASTA], [0, 1]);
   // Zoom leve aplicado a plano + foto juntos, para que nunca se desalineen.
-  const escala = useTransform(p, [0, 1], [0.97, 1]);
+  const escala = useTransform(p, [0, RENDER_HASTA], [0.97, 1]);
 
   const [paso, setPaso] = useState(0);
-  useMotionValueEvent(p, "change", (v) => setPaso(v < 0.3 ? 0 : v < RENDER_DESDE ? 1 : 2));
+  useMotionValueEvent(p, "change", (v) => setPaso(v < 0.22 ? 0 : v < RENDER_DESDE ? 1 : 2));
 
   const texto = (
     <div className="md:col-span-4">
@@ -181,9 +183,9 @@ export function DelPlanoATuCasa() {
     <section
       ref={seccionRef}
       // Margen superior: separa esta sección del carrusel de colecciones.
-      className="relative md:mt-40"
+      className="relative md:mt-32"
       // En desktop, la altura extra es el recorrido de scroll durante el cual se dibuja el plano.
-      style={anclado ? { height: "280svh" } : undefined}
+      style={anclado ? { height: "340svh" } : undefined}
     >
       {anclado ? (
         <div className="sticky top-0 flex h-svh items-center overflow-hidden">

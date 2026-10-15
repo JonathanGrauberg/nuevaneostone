@@ -27,7 +27,7 @@ export default function Home() {
 
       {/* ─── 01 NOSOTROS ──────────────────────────────────── */}
       {/* Foto del frente a sangre, con degradé hacia el texto (derecha) y contadores debajo */}
-      <section className="container-x pt-24 pb-12 md:pt-36 md:pb-16">
+      <section className="container-x pt-24 pb-12 md:pt-36 md:pb-20">
         <div className="relative overflow-hidden bg-surface">
           <ImageReveal className="relative aspect-[4/3] md:absolute md:inset-y-0 md:left-0 md:aspect-auto md:w-[62%]">
             <Image

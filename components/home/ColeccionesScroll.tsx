@@ -49,13 +49,7 @@ export function ColeccionesScroll({ colecciones }: { colecciones: Item[] }) {
   const progreso = useSpring(scrollYProgress, { stiffness: 140, damping: 30, mass: 0.35 });
   const x = useTransform(progreso, [0, 1], [0, -recorrido]);
   // La página no queda bloqueada del todo: el bloque sube apenas (5% de la pantalla) mientras avanza.
-  const deriva = useTransform(progreso, [0, 1], ["2.5vh", "-2.5vh"]);
-  // Degradé en los bordes (efecto rueda): del lado donde todavía hay tarjetas por ver.
-  const mascara = useTransform(progreso, (v) => {
-    const izq = Math.min(v * 60, 9);
-    const der = Math.min((1 - v) * 60, 9);
-    return `linear-gradient(90deg, transparent 0%, #000 ${izq}%, #000 ${100 - der}%, transparent 100%)`;
-  });
+  const deriva = useTransform(progreso, [0, 1], ["0vh", "-5vh"]);
   const [actual, setActual] = useState(1);
   useMotionValueEvent(progreso, "change", (v) => setActual(Math.min(colecciones.length, Math.floor(v * colecciones.length) + 1)));
 
@@ -90,7 +84,7 @@ export function ColeccionesScroll({ colecciones }: { colecciones: Item[] }) {
     <Reveal
       key={c.slug}
       delay={anclado ? 0 : i * 0.06}
-      className={anclado ? "w-[min(21vw,40svh)] shrink-0" : "w-[70vw] shrink-0 snap-start sm:w-[42vw]"}
+      className={anclado ? "w-[min(23vw,45svh)] shrink-0" : "w-[70vw] shrink-0 snap-start sm:w-[42vw]"}
     >
       <ProductCard href={`/colecciones/${c.slug}`} nombre={c.nombre} bajada={c.bajada} imagen={c.portada} indice={i} />
     </Reveal>
@@ -109,10 +103,8 @@ export function ColeccionesScroll({ colecciones }: { colecciones: Item[] }) {
         <div className="sticky top-0 flex h-svh flex-col justify-center overflow-hidden pt-16">
           <motion.div style={{ y: deriva }}>
             {encabezado}
-            <motion.div style={{ maskImage: mascara, WebkitMaskImage: mascara }}>
-              <motion.div ref={pistaRef} style={{ x }} className="flex w-max gap-px px-[clamp(20px,5vw,80px)]">
-                {tarjetas}
-              </motion.div>
+            <motion.div ref={pistaRef} style={{ x }} className="flex w-max gap-px px-[clamp(20px,5vw,80px)]">
+              {tarjetas}
             </motion.div>
           </motion.div>
         </div>
