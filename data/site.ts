@@ -10,8 +10,8 @@ export const site = {
     { texto: "+54 9 343 4950095", numero: "+5493434950095" },
     { texto: "+54 9 343 4950948", numero: "+5493434950948" },
   ],
-  // TODO: el sitio actual usa 5493434549879 en el botón flotante y 5493434575484 en el contenido. Confirmar cuál queda.
-  whatsapp: "5493434549879",
+  // WhatsApp de casa central (planilla de locales, oct 2026). Lo usa el botón flotante.
+  whatsapp: "5493434575484",
   email: "info@neostone.com.ar",
   redes: {
     instagram: "https://www.instagram.com/neostone.sa/",

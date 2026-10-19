@@ -22,6 +22,7 @@ export const showrooms: ShowroomInput[] = [
     razonSocial: "Neostone S.A.",
     casaCentral: true,
     estado: "activo",
+    whatsapp: "5493434575484",
     direccion: "Santiago Eichhorn 419, Parque Industrial",
     geo: { lat: -32.0286, lng: -60.3069 }, // aprox.
     mapsUrl: "https://maps.app.goo.gl/kQH978p7oGPogM2S7",
@@ -50,7 +51,7 @@ export const showrooms: ShowroomInput[] = [
     provincia: "Entre Ríos",
     nombre: "Chalupas",
     estado: "activo",
-    direccion: "Chalup 19",
+    direccion: "Chalupa 19",
     geo: { lat: -33.0094, lng: -58.5172 }, // aprox.
     mapsUrl: "https://maps.app.goo.gl/rgXcGJz3HULgB7RP7",
     telefonos: [{ texto: "+54 9 3446 21-5575", numero: "+5493446215575" }],
@@ -69,17 +70,16 @@ export const showrooms: ShowroomInput[] = [
     slug: "bahia-blanca",
     ciudad: "Bahía Blanca",
     provincia: "Buenos Aires",
-    // TODO: el listado actual dice "Habitare – Dawse Ingeniería SRL". Confirmar nombre.
-    nombre: "Neostone Bahía Blanca",
+    nombre: "Texel Marmolería",
     estado: "activo",
-    direccion: "Dorrego 532, Local 6",
+    whatsapp: "5492914372741",
+    direccion: "Tucumán 678",
     geo: { lat: -38.7196, lng: -62.2724 }, // aprox.
-    mapsUrl: "https://maps.app.goo.gl/bWh7Ud9MBZUZcLUr5",
-    telefonos: [{ texto: "291 551-1001", numero: "+542915511001" }],
+    telefonos: [{ texto: "291 437-2741", numero: "+5492914372741" }],
     email: "pedidosbahiablanca@gmail.com",
     horarios: [
-      { dias: "lun-vie", tramos: ["8:00-18:00"] },
-      { dias: "sab", tramos: ["9:00-13:00"] },
+      { dias: "lun-vie", tramos: ["8:00-12:00", "15:30-19:30"] },
+      { dias: "sab", tramos: ["8:30-12:30"] },
     ],
     staff: [
       { nombre: "Gabriel Marcolini", rol: "Titular", foto: asset("gabriel-marco.png") },
@@ -97,6 +97,7 @@ export const showrooms: ShowroomInput[] = [
     provincia: "Buenos Aires",
     nombre: "Doo Diseños",
     estado: "activo",
+    whatsapp: "5493388415192",
     direccion: "Lavalle 1005",
     geo: { lat: -35.0322, lng: -63.0125 }, // aprox.
     mapsUrl: "https://maps.app.goo.gl/Fb5S6zwfGJ9XgZpe8",
@@ -117,6 +118,7 @@ export const showrooms: ShowroomInput[] = [
     nombre: "Mármoles López",
     razonSocial: "Mármoles López S.R.L.",
     estado: "activo",
+    whatsapp: "5492364606480",
     direccion: "Alberdi 1661",
     geo: { lat: -34.5856, lng: -60.9589 }, // aprox.
     mapsUrl: "https://share.google/Nud51JYrJASMs5Tuc",
@@ -168,7 +170,8 @@ export const showrooms: ShowroomInput[] = [
     nombre: "Mármoles Turco",
     razonSocial: "Mármoles Turco S.R.L.",
     estado: "activo",
-    direccion: "Castelli 1901",
+    whatsapp: "5492477613671",
+    direccion: "Florencio Sánchez esq. Castelli",
     geo: { lat: -33.8895, lng: -60.5736 }, // aprox.
     mapsUrl: "https://share.google/69gUD81HNLyXFgUsv",
     telefonos: [{ texto: "02477 42-6219", numero: "+542477426219" }],
@@ -191,6 +194,7 @@ export const showrooms: ShowroomInput[] = [
     provincia: "Buenos Aires",
     nombre: "Neostone Tres Arroyos",
     estado: "activo",
+    whatsapp: "5492983415252",
     direccion: "25 de Mayo 365",
     geo: { lat: -38.3775, lng: -60.2758 }, // aprox.
     mapsUrl: "https://maps.app.goo.gl/RVkZFjyEUzLUffNQ8",
@@ -215,6 +219,7 @@ export const showrooms: ShowroomInput[] = [
     nombre: "Patagonia Interior",
     razonSocial: "Amoblasur S.A.",
     estado: "activo",
+    whatsapp: "5492804671050",
     direccion: "Don Bosco 77",
     geo: { lat: -43.2489, lng: -65.3051 }, // aprox.
     mapsUrl: "https://maps.app.goo.gl/EFkCbZiPPE2LpWrYA",
@@ -239,11 +244,12 @@ export const showrooms: ShowroomInput[] = [
     nombre: "Mottesi Materiales",
     razonSocial: "Mottesi Materiales S.A.",
     estado: "activo",
+    email: "amoblamientos@mottesimateriales.com.ar",
+    whatsapp: "5492975372488",
     direccion: "Av. Sargento Cabral 320",
     geo: { lat: -45.8702, lng: -67.5039 },
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Av.+Sgto.+Cabral+320,+Comodoro+Rivadavia",
-    telefonos: [{ texto: "0297 447-9100", numero: "+542974479100" }],
-    // TODO: el link de WhatsApp actual está mal armado (wa.me/+54902974479100). Pedir el número correcto.
+    telefonos: [{ texto: "(297) 447-9100 / 447-9133", numero: "+542974479100" }],
     horarios: [
       { dias: "lun-vie", tramos: ["9:00-18:00"] },
       { dias: "sab", tramos: ["9:00-13:00"] },
@@ -259,6 +265,7 @@ export const showrooms: ShowroomInput[] = [
     provincia: "Córdoba",
     nombre: "Emmat",
     estado: "activo",
+    whatsapp: "5493517668866",
     direccion: "Hiper Construcción, Av. Rodríguez del Busto, local 600",
     geo: { lat: -31.3647, lng: -64.2305 }, // aprox.
     mapsUrl: "https://maps.app.goo.gl/z2TQ9KAwTRidWhAm8",
@@ -354,6 +361,7 @@ export const showrooms: ShowroomInput[] = [
     nombre: "Coraza",
     razonSocial: "Sidermet San Luis S.A.",
     estado: "activo",
+    whatsapp: "5492664029631",
     direccion: "ZAC, Ruta 3 Km 1",
     geo: { lat: -33.3017, lng: -66.3378 }, // aprox.
     mapsUrl: "https://maps.app.goo.gl/pW24m5Hjna9pnDt56",
@@ -374,6 +382,7 @@ export const showrooms: ShowroomInput[] = [
     nombre: "Accesaniga",
     razonSocial: "Accesaniga S.A.",
     estado: "activo",
+    whatsapp: "5493413240912",
     direccion: "Paraguay 1356",
     geo: { lat: -32.9442, lng: -60.6505 }, // aprox.
     mapsUrl: "https://maps.app.goo.gl/wYwsVMtrLq1zhRVc6",
@@ -398,6 +407,7 @@ export const showrooms: ShowroomInput[] = [
     nombre: "Veta Diseño & Arq",
     razonSocial: "Alcober Emmanuel",
     estado: "activo",
+    whatsapp: "5493513923998",
     direccion: "Elflein 976",
     geo: { lat: -41.1335, lng: -71.3103 }, // aprox.
     mapsUrl: "https://maps.app.goo.gl/tnCDzTYxBqPNyiat9",
@@ -424,11 +434,13 @@ export const showrooms: ShowroomInput[] = [
     slug: "zarate",
     ciudad: "Zárate",
     provincia: "Buenos Aires",
-    nombre: "Neostone Zárate",
+    nombre: "Kujnia",
     estado: "activo",
+    email: "kujnia.ventas@gmail.com",
+    direccion: "Gral. Lavalle 1108",
     geo: { lat: -34.0981, lng: -59.0286 }, // aprox.
-    telefonos: [],
-    horarios: [],
+    telefonos: [{ texto: "3487 64-0240", numero: "+543487640240" }],
+    horarios: [{ dias: "lun-vie", tramos: ["8:00-19:00"] }],
     staff: [],
     galeria: [],
   },
@@ -436,11 +448,15 @@ export const showrooms: ShowroomInput[] = [
     slug: "san-nicolas",
     ciudad: "San Nicolás",
     provincia: "Buenos Aires",
-    nombre: "Neostone San Nicolás",
+    nombre: "Cúbica",
     estado: "activo",
+    direccion: "Savio 77",
     geo: { lat: -33.3342, lng: -60.2253 }, // aprox.
-    telefonos: [],
-    horarios: [],
+    telefonos: [{ texto: "3364 56-1477", numero: "+543364561477" }],
+    horarios: [
+      { dias: "lun-vie", tramos: ["8:00-19:00"] },
+      { dias: "sab", tramos: ["9:00-13:00"] },
+    ],
     staff: [],
     galeria: [],
   },
@@ -450,9 +466,14 @@ export const showrooms: ShowroomInput[] = [
     provincia: "Catamarca",
     nombre: "Neostone Catamarca",
     estado: "activo",
+    email: "neostonecatamarca@gmail.com",
+    direccion: "Diego de Rojas 340, San Fernando del Valle de Catamarca",
     geo: { lat: -28.4696, lng: -65.7852 }, // aprox.
-    telefonos: [],
-    horarios: [],
+    telefonos: [{ texto: "3834 65-0828", numero: "+543834650828" }],
+    horarios: [
+      { dias: "lun-vie", tramos: ["9:00-17:00"] },
+      { dias: "sab", tramos: ["9:00-13:00"] },
+    ],
     staff: [],
     galeria: [],
   },
@@ -460,10 +481,11 @@ export const showrooms: ShowroomInput[] = [
     slug: "rio-gallegos",
     ciudad: "Río Gallegos",
     provincia: "Santa Cruz",
-    nombre: "Neostone Río Gallegos",
+    nombre: "Toscana",
     estado: "activo",
+    direccion: "Río Orkeke 345",
     geo: { lat: -51.623, lng: -69.2168 }, // aprox.
-    telefonos: [],
+    telefonos: [{ texto: "2966 62-2378", numero: "+542966622378" }],
     horarios: [],
     staff: [],
     galeria: [],
@@ -472,8 +494,9 @@ export const showrooms: ShowroomInput[] = [
     slug: "villa-la-angostura",
     ciudad: "Villa La Angostura",
     provincia: "Neuquén",
-    nombre: "Neostone Villa La Angostura",
+    nombre: "Veta Diseño & Arquitectura",
     estado: "activo",
+    direccion: "Osa Mayor 1080",
     geo: { lat: -40.7616, lng: -71.646 }, // aprox.
     telefonos: [],
     horarios: [],
@@ -504,5 +527,28 @@ export const showrooms: ShowroomInput[] = [
     staff: [],
     galeria: [],
   },
-  // TODO: Corrientes y Resistencia figuran con "?" en las observaciones. Sumar cuando se confirmen.
+  {
+    slug: "resistencia",
+    ciudad: "Resistencia",
+    provincia: "Chaco",
+    nombre: "Neostone Resistencia",
+    estado: "activo",
+    geo: { lat: -27.4514, lng: -58.9867 }, // aprox.
+    telefonos: [],
+    horarios: [],
+    staff: [],
+    galeria: [],
+  },
+  {
+    slug: "corrientes",
+    ciudad: "Corrientes",
+    provincia: "Corrientes",
+    nombre: "Neostone Corrientes",
+    estado: "proximamente",
+    geo: { lat: -27.4692, lng: -58.8306 }, // aprox.
+    telefonos: [],
+    horarios: [],
+    staff: [],
+    galeria: [],
+  },
 ];

@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { BeneficiosAcordeon } from "@/components/beneficios/BeneficiosAcordeon";
 import { Reveal } from "@/components/motion/Reveal";
 import { WordReveal } from "@/components/motion/WordReveal";
 import { beneficios, beneficiosIntro } from "@/data/beneficios";
 
 export const metadata: Metadata = {
   title: "Beneficios",
-  description: "Atención personalizada, entrega en tiempo y forma, 5 años de garantía, experiencia de realidad virtual, marmolería propia y sustentabilidad.",
+  description: "Entrega en tiempo y forma, atención personalizada, 5 años de garantía, experiencia de realidad virtual, marmolería propia y sustentabilidad.",
 };
 
 export default function BeneficiosPage() {
@@ -22,21 +23,9 @@ export default function BeneficiosPage() {
         </div>
       </div>
 
-      <ol>
-        {beneficios.map((b, i) => (
-          <Reveal key={b.titulo} className="grid gap-6 border-t border-line py-12 md:grid-cols-12">
-            <span className="font-display text-[11px] tracking-[0.32em] text-accent md:col-span-1">{String(i + 1).padStart(2, "0")}</span>
-            <h2 className="font-display text-2xl font-light md:col-span-4 md:text-3xl">{b.titulo}</h2>
-            <div className="space-y-4 leading-relaxed text-fg-soft md:col-span-6 md:col-start-7">
-              {b.texto.map((t) => (
-                <p key={t}>{t}</p>
-              ))}
-            </div>
-          </Reveal>
-        ))}
-      </ol>
+      <BeneficiosAcordeon beneficios={beneficios} />
 
-      <div className="mt-16 flex flex-col items-start justify-between gap-8 border-t border-line pt-12 md:flex-row md:items-center">
+      <div className="mt-24 flex flex-col items-start justify-between gap-8 border-t border-line pt-12 md:flex-row md:items-center">
         <p className="font-display text-2xl font-extralight md:text-4xl">
           Conocé los beneficios <span className="font-normal">en persona.</span>
         </p>

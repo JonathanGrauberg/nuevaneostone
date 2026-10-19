@@ -12,9 +12,9 @@ import { site } from "@/data/site";
 import { getColecciones, getShowroomsResumen } from "@/lib/content";
 
 const destacados = [
+  { titulo: "Entrega en tiempo", texto: "Nuestro principal activo: plazos confiables y acompañamiento desde el diseño hasta la colocación en obra." },
   { titulo: "Garantía de 5 años", texto: "Somos fabricantes: supervisamos cada proceso y respaldamos cada mueble por escrito." },
   { titulo: "Todo en un lugar", texto: "Marmolería premium propia para mesadas: menos proveedores, menos demoras." },
-  { titulo: "Entrega en tiempo", texto: "Plazos confiables y acompañamiento desde el diseño hasta la colocación en obra." },
 ];
 
 export default function Home() {

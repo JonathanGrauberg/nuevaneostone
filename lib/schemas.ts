@@ -40,7 +40,7 @@ export const coleccionSchema = z.object({
 });
 
 export const provincias = [
-  "Buenos Aires", "Catamarca", "Chubut", "Córdoba", "Entre Ríos", "Neuquén",
+  "Buenos Aires", "Catamarca", "Chaco", "Chubut", "Córdoba", "Corrientes", "Entre Ríos", "Neuquén",
   "Río Negro", "Salta", "San Juan", "San Luis", "Santa Cruz", "Santa Fe",
 ] as const;
 
