@@ -11,6 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...getColecciones().map((c) => ({ url: u(`/colecciones/${c.slug}`), priority: 0.8 })),
     { url: u("/showrooms"), priority: 0.9 },
     ...getShowrooms().map((s) => ({ url: u(`/showrooms/${s.slug}`), priority: 0.8 })),
+    { url: u("/experiencia-vr"), priority: 0.8 },
     { url: u("/beneficios"), priority: 0.6 },
   ];
 }
