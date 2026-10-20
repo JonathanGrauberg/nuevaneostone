@@ -136,13 +136,13 @@ export function ShowroomExplorer({ showrooms, inicial }: { showrooms: ShowroomMa
             <p className="mt-1 text-sm text-fg-soft">{s.nombre}</p>
 
             <dl className="mt-5 space-y-2 text-sm text-fg-soft">
-              <div className="flex gap-3">
-                <dt className="eyebrow w-20 shrink-0 pt-0.5">Dirección</dt>
+              <div className="grid grid-cols-[112px_1fr] gap-4">
+                <dt className="eyebrow pt-0.5">Dirección</dt>
                 <dd>{s.direccion ?? <span className="text-muted">A confirmar</span>}</dd>
               </div>
               {s.horarios.length > 0 && (
-                <div className="flex gap-3">
-                  <dt className="eyebrow w-20 shrink-0 pt-0.5">Horario</dt>
+                <div className="grid grid-cols-[112px_1fr] gap-4">
+                  <dt className="eyebrow pt-0.5">Horario</dt>
                   <dd>
                     {s.horarios.map((h) => {
                       const f = formatearHorario(h);
