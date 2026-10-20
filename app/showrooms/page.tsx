@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { WordReveal } from "@/components/motion/WordReveal";
 import { Reveal } from "@/components/motion/Reveal";
+import { ShowroomExplorer } from "@/components/showrooms/ShowroomExplorer";
 import { ShowroomFinder } from "@/components/showrooms/ShowroomFinder";
-import { getShowroomsResumen } from "@/lib/content";
+import { getShowroomsMapa, getShowroomsResumen } from "@/lib/content";
 
 // La descripción se arma con las provincias reales de data/showrooms.ts.
 export function generateMetadata(): Metadata {
@@ -34,7 +35,13 @@ export default function ShowroomsPage() {
           </Reveal>
         </div>
       </div>
-      <ShowroomFinder showrooms={showrooms} />
+      <ShowroomExplorer showrooms={getShowroomsMapa()} inicial="crespo" />
+
+      <div className="mt-28 mb-10 flex items-end justify-between border-b border-line pb-5">
+        <p className="eyebrow">Todos los showrooms</p>
+        <p className="eyebrow hidden md:block">Ordenados por cercanía si compartís tu ubicación</p>
+      </div>
+      <ShowroomFinder showrooms={showrooms} buscador={false} />
     </div>
   );
 }

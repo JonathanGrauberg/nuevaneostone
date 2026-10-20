@@ -125,6 +125,26 @@ export function getShowroomsResumen(): ShowroomResumen[] {
   }));
 }
 
+/** Datos para el explorador del mapa (ficha + pin). */
+export type ShowroomMapa = ShowroomResumen & Pick<Showroom, "direccion" | "horarios" | "whatsapp" | "telefonos">;
+
+export function getShowroomsMapa(): ShowroomMapa[] {
+  return getShowrooms().map((s) => ({
+    slug: s.slug,
+    ciudad: s.ciudad,
+    provincia: s.provincia,
+    nombre: s.nombre,
+    geo: s.geo,
+    estado: s.estado,
+    casaCentral: s.casaCentral,
+    imagen: s.frente ?? s.galeria[0],
+    direccion: s.direccion,
+    horarios: s.horarios,
+    whatsapp: s.whatsapp,
+    telefonos: s.telefonos,
+  }));
+}
+
 export function showroomsCercanos(s: Showroom, n = 3) {
   return getShowrooms()
     .filter((o) => o.slug !== s.slug)

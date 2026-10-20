@@ -13,9 +13,11 @@ type Props = {
   showrooms: ShowroomResumen[];
   /** "grid" = página de showrooms; "compacto" = bloque del home. */
   variante?: "grid" | "compacto";
+  /** false = sin barra de búsqueda (la página de showrooms usa la del explorador del mapa). */
+  buscador?: boolean;
 };
 
-export function ShowroomFinder({ showrooms, variante = "grid" }: Props) {
+export function ShowroomFinder({ showrooms, variante = "grid", buscador: conBuscador = true }: Props) {
   const [q, setQ] = useState("");
   // Ubicación compartida con las páginas de showroom (se guarda en el navegador).
   const yo = useUbicacion();
@@ -109,7 +111,7 @@ export function ShowroomFinder({ showrooms, variante = "grid" }: Props) {
 
   return (
     <div>
-      {buscador}
+      {conBuscador && buscador}
       {geoEstado === "error" && <p className="mt-3 text-sm text-muted">No pudimos obtener tu ubicación. Buscá tu ciudad arriba.</p>}
       <p className="eyebrow mt-6 mb-8">
         {resultados.length} {resultados.length === 1 ? "showroom" : "showrooms"}
@@ -117,7 +119,7 @@ export function ShowroomFinder({ showrooms, variante = "grid" }: Props) {
       {resultados.length === 0 ? (
         vacio
       ) : (
-        <motion.ul layout className="grid gap-px sm:grid-cols-2 lg:grid-cols-4">
+        <motion.ul layout className="grid gap-5 sm:grid-cols-2 md:gap-6 lg:grid-cols-4">
           <AnimatePresence mode="popLayout">
             {resultados.map(({ s, km }) => (
               <motion.li
