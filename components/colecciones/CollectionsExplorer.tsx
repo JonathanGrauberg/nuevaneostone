@@ -86,9 +86,10 @@ export function CollectionsExplorer({ colecciones, inicial }: { colecciones: Col
               "linear-gradient(90deg, var(--bg) 0%, color-mix(in srgb, var(--bg) 88%, transparent) 28%, color-mix(in srgb, var(--bg) 35%, transparent) 60%, transparent 85%)",
           }}
         />
-        {/* El borde inferior se funde con el fondo real de la página (claro u oscuro) */}
-        <div className="absolute inset-0" style={{ background: "linear-gradient(0deg, var(--page) 0%, transparent 38%)" }} />
+        {/* Oscuro detrás del texto + borde inferior fundido con el fondo real de la página (claro u oscuro) */}
+        <div className="absolute inset-0" style={{ background: "linear-gradient(0deg, color-mix(in srgb, var(--bg) 70%, transparent) 0%, transparent 45%)" }} />
         <div className="absolute inset-0 md:hidden" style={{ background: "color-mix(in srgb, var(--bg) 45%, transparent)" }} />
+        <div className="fundido-pagina absolute inset-0" />
         <div
           className="absolute inset-x-0 top-0 h-32"
           style={{ background: "linear-gradient(180deg, color-mix(in srgb, var(--bg) 70%, transparent), transparent)" }}
@@ -190,10 +191,11 @@ export function CollectionsExplorer({ colecciones, inicial }: { colecciones: Col
                   }`}
                 />
                 <span className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-black/10" />
-                {/* Logo chico abajo a la izquierda, tamaño ópticamente parejo entre colecciones */}
+                {/* Logo chico abajo a la izquierda, tamaño ópticamente parejo entre colecciones.
+                    La opacidad va en el logo (no en el contenedor) para no aislar el mix-blend que oculta el fondo negro. */}
                 {col.logo ? (
-                  <span className="absolute bottom-3 left-3 opacity-80 transition-opacity duration-500 group-hover:opacity-100 md:bottom-3.5 md:left-3.5">
-                    <LogoColeccion logo={col.logo} area={950} />
+                  <span className="absolute bottom-3 left-3 md:bottom-3.5 md:left-3.5">
+                    <LogoColeccion logo={col.logo} area={950} className="opacity-80 transition-opacity duration-500 group-hover:opacity-100" />
                   </span>
                 ) : (
                   <span className="absolute right-3 bottom-3 left-3 font-display text-[9px] leading-snug tracking-[0.2em] text-white/80 uppercase md:bottom-3.5 md:left-3.5">

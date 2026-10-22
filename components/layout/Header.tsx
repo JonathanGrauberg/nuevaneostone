@@ -15,19 +15,34 @@ export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
   const [open, setOpen] = useState(false);
+  // ¿Lo que está debajo del navbar es una sección siempre oscura (.force-dark)?
+  // En modo claro, el navbar transparente pasa a letras claras para no perderse.
+  const [sobreOscuro, setSobreOscuro] = useState(false);
 
   useEffect(() => {
     let last = window.scrollY;
+    const detectar = () => {
+      const debajo = document.elementsFromPoint(window.innerWidth / 2, 40).find((el) => !el.closest("header"));
+      setSobreOscuro(!!debajo?.closest(".force-dark"));
+    };
     const onScroll = () => {
       const y = window.scrollY;
       setScrolled(y > 40);
       setHidden(y > 300 && y > last);
       last = y;
+      detectar();
     };
     onScroll();
+    // Al cambiar de página el contenido nuevo tarda un instante en pintarse
+    const t = window.setTimeout(detectar, 120);
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+    window.addEventListener("resize", detectar);
+    return () => {
+      window.clearTimeout(t);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", detectar);
+    };
+  }, [pathname]);
 
   // Cerrar el menú mobile al navegar (ajuste de estado durante el render, sin efecto).
   const [lastPath, setLastPath] = useState(pathname);
@@ -41,7 +56,7 @@ export function Header() {
       <header
         className={`fixed inset-x-0 top-0 z-50 transition-[transform,background-color,border-color] duration-700 ease-lux ${
           hidden && !open ? "-translate-y-full" : ""
-        } ${scrolled || open ? "border-b border-line bg-bg/85 backdrop-blur-md" : "border-b border-transparent"}`}
+        } ${scrolled || open ? "border-b border-line bg-bg/85 backdrop-blur-md" : `border-b border-transparent ${sobreOscuro ? "on-dark" : ""}`}`}
       >
         <div className="container-x flex h-[72px] items-center justify-between">
           <Link href="/" aria-label="Neostone, inicio" className="relative block h-[30px] w-[137px]">

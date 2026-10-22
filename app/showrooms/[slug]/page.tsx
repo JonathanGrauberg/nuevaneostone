@@ -66,19 +66,22 @@ export default async function ShowroomPage({ params }: PageProps<"/showrooms/[sl
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
       {/* ─── HERO ─────────────────────────────────────────── */}
-      <section className="relative h-[78svh] min-h-[560px] overflow-hidden">
+      <section className="force-dark relative h-[78svh] min-h-[560px] overflow-hidden">
         {portada ? (
           <Image src={portada} alt={`Frente del showroom de ${s.ciudad}`} fill priority sizes="100vw" quality={90} className="scale-105 object-cover" />
         ) : (
           <ImagenPendiente texto="Foto del local próximamente" alinear="esquina" />
         )}
-        <div className="absolute inset-0" style={{ background: "linear-gradient(0deg, var(--bg) 0%, transparent 60%)" }} />
+        {/* Siempre oscuro (como los demás héroes): oscuro detrás del texto + fundido corto al color de la página */}
+        <div className="absolute inset-0" style={{ background: "linear-gradient(0deg, color-mix(in srgb, var(--bg) 80%, transparent) 0%, transparent 60%)" }} />
         <div className="absolute inset-x-0 top-0 h-48" style={{ background: "linear-gradient(180deg, color-mix(in srgb, var(--bg) 85%, transparent), transparent)" }} />
         <div
           className="absolute inset-0"
           style={{ background: "linear-gradient(90deg, color-mix(in srgb, var(--bg) 85%, transparent) 0%, transparent 70%)" }}
         />
-        <div className="container-x relative flex h-full flex-col justify-between pt-28 pb-14">
+        {/* Última capa: el fundido al color de la página va encima de todo (si no, el degradé lateral lo tapa abajo a la izquierda) */}
+        <div className="fundido-pagina absolute inset-0" />
+        <div className="container-x relative flex h-full flex-col justify-between pt-28 pb-28">
           <p className="eyebrow">
             <Link href="/showrooms" className="transition-colors hover:text-fg">
               ← Showrooms
@@ -95,7 +98,7 @@ export default async function ShowroomPage({ params }: PageProps<"/showrooms/[sl
             </div>
             <WordReveal as="h1" trigger="mount" lines={[s.ciudad]} className="font-display text-6xl leading-none font-extralight md:text-8xl" />
             <Reveal delay={0.3}>
-              <p className="mt-5 font-display text-[12px] tracking-[0.28em] text-fg-soft uppercase">
+              <p className="subtitulo-hero mt-5 font-display text-[12px] tracking-[0.28em] text-fg-soft uppercase">
                 {s.razonSocial ?? s.nombre}
                 {s.casaCentral ? " — Casa central y fábrica" : " — Showroom oficial"}
               </p>

@@ -157,3 +157,44 @@ body {
 .logo-coleccion {
   mix-blend-mode: screen;
 }
+
+/* Navbar transparente sobre una sección oscura (en modo claro): letras claras y sombreado suave. */
+.on-dark {
+  --fg: #ece8e1;
+  --fg-soft: #e2ddd5;
+  --line-strong: rgba(255, 255, 255, 0.35);
+  color: var(--fg);
+}
+.on-dark nav a,
+.on-dark nav button {
+  text-shadow: 0 1px 14px rgba(0, 0, 0, 0.55);
+}
+:root[data-theme="light"] .on-dark .logo {
+  filter: drop-shadow(0 1px 10px rgba(0, 0, 0, 0.45));
+}
+
+/*
+ * Fundido del borde inferior de un hero al color real de la página.
+ * Largo y con curva suave (muchas paradas, tipo "ease"): empieza casi imperceptible
+ * y se intensifica hacia abajo, así no se nota una línea donde termina el degradé.
+ */
+.fundido-pagina {
+  background: linear-gradient(
+    0deg,
+    var(--page) 0%,
+    color-mix(in srgb, var(--page) 86%, transparent) 5%,
+    color-mix(in srgb, var(--page) 66%, transparent) 11%,
+    color-mix(in srgb, var(--page) 45%, transparent) 18%,
+    color-mix(in srgb, var(--page) 27%, transparent) 26%,
+    color-mix(in srgb, var(--page) 14%, transparent) 35%,
+    color-mix(in srgb, var(--page) 6%, transparent) 45%,
+    color-mix(in srgb, var(--page) 2%, transparent) 56%,
+    transparent 68%
+  );
+}
+
+/* Subtítulo chico sobre la foto del hero: en modo claro la foto queda más lavada y se pierde */
+:root[data-theme="light"] .subtitulo-hero {
+  color: #f4f1ec;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.55), 0 2px 18px rgba(0, 0, 0, 0.55);
+}
