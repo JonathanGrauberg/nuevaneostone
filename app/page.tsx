@@ -12,9 +12,9 @@ import { site } from "@/data/site";
 import { getColecciones, getShowroomsResumen } from "@/lib/content";
 
 const destacados = [
-  { titulo: "Entrega en tiempo", texto: "Nuestro principal activo: plazos confiables y acompañamiento desde el diseño hasta la colocación en obra." },
+  { titulo: "Entrega en tiempo", texto: "Uno de nuestros principales activos: cumplir con los tiempos prometidos, desde el diseño hasta la colocación en obra." },
   { titulo: "Garantía de 5 años", texto: "Somos fabricantes: supervisamos cada proceso y respaldamos cada mueble por escrito." },
-  { titulo: "Todo en un lugar", texto: "Marmolería premium propia para mesadas: menos proveedores, menos demoras." },
+  { titulo: "Todo en un lugar", texto: "Desde el primer boceto hasta la última mesada, hablás siempre con las mismas personas. Diseñamos tus muebles y fabricamos tus mesadas en nuestra planta, con corte y pulido de última generación, para que todo combine a la perfección y llegue a tiempo." },
 ];
 
 export default function Home() {

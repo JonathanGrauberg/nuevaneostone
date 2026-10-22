@@ -10,10 +10,10 @@ export const beneficiosIntro =
 export const beneficios: { titulo: string; destacado: string; imagen: string; texto: string[] }[] = [
   {
     titulo: "Entrega en tiempo y forma",
-    destacado: "Nuestro principal activo.",
+    destacado: "Cumplir con los tiempos prometidos.",
     imagen: "/images/home/frente-planta-crespo.jpg",
     texto: [
-      "Sabemos lo importante que es cumplir. Por eso garantizamos plazos de entrega confiables y la calidad total de nuestros productos.",
+      "Uno de nuestros principales activos: cumplir con los tiempos prometidos. Por eso garantizamos plazos de entrega confiables y la calidad total de nuestros productos.",
     ],
   },
   {
@@ -45,11 +45,10 @@ export const beneficios: { titulo: string; destacado: string; imagen: string; te
   },
   {
     titulo: "Todo en un mismo lugar",
-    destacado: "Marmolería premium propia.",
+    destacado: "Del primer boceto a la última mesada.",
     imagen: wp("2025/05/Linea-Urban-Camara-1-1-2048x1436.jpg"),
     texto: [
-      "Contamos con una Marmolería Premium con maquinaria de última generación de corte, pulido y vaciados, permitiendo acabados y terminaciones de excelencia.",
-      "Conseguís todo en un mismo lugar, optimizando tiempos de entrega y evitando malentendidos con otros proveedores.",
+      "Desde el primer boceto hasta la última mesada, hablás siempre con las mismas personas. Diseñamos tus muebles y fabricamos tus mesadas en nuestra planta, con corte y pulido de última generación, para que todo combine a la perfección y llegue a tiempo.",
     ],
   },
   {
