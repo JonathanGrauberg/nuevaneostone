@@ -14,45 +14,6 @@ import type { ColeccionInput } from "@/lib/schemas";
  */
 export const colecciones: ColeccionInput[] = [
   {
-    slug: "pura",
-    logo: { src: wp("2025/05/puraproduc-1.png"), ancho: 178, alto: 27 },
-    nombre: "Pura",
-    linea: "cocina",
-    materiales: ["melamina", "termolaminado-3d"],
-    bajada: "Razón y precisión",
-    descripcion:
-      "Fundamentada en la razón y la precisión, es de formas sencillas y funcionales, pero con un lenguaje innovador.",
-    parrafos: [
-      "Esta línea renuncia a la ornamentación excesiva y otorga gran importancia al diseño práctico e inteligente.",
-      "Pura es rupturista respecto de los conceptos tradicionales del diseño.",
-    ],
-    hero: wp("2025/05/Linea-Pura-Camara-01-2048x1170.jpg"),
-    portada: wp("2025/05/Linea-Pura-Camara-02-1843x2048.jpg"),
-    renders: [
-      { src: wp("2025/05/Linea-Pura-Camara-01-2048x1170.jpg"), alt: "Cocina Pura, vista general" },
-      { src: wp("2025/05/Linea-Pura-Camara-02-1843x2048.jpg"), alt: "Cocina Pura, detalle" },
-      { src: wp("2025/05/Linea-Pura-Camara-03-1843x2048.jpg"), alt: "Cocina Pura, vista lateral" },
-    ],
-  },
-  {
-    slug: "line",
-    logo: { src: wp("2025/05/lineneo.png"), ancho: 112, alto: 42 },
-    nombre: "Line",
-    linea: "cocina",
-    materiales: ["melamina"],
-    bajada: "Diseño posmoderno",
-    descripcion:
-      "Es la expresión del diseño posmoderno. Ecléctica, nos transporta en el tiempo: sus detalles nos llevan al pasado, su simplicidad nos sienta en el presente.",
-    parrafos: ["Y el ingenio de sus formas nos traslada al futuro."],
-    hero: wp("2025/05/Camara_01-2048x1219.jpg"),
-    portada: wp("2025/05/Camara_03_cambio-abrir-scaled.jpg"),
-    renders: [
-      { src: wp("2025/05/Camara_01-2048x1219.jpg"), alt: "Cocina Line, vista general" },
-      { src: wp("2025/05/Camara_03_cambio-abrir-scaled.jpg"), alt: "Cocina Line, detalle de apertura" },
-      { src: wp("2025/05/Camara_02-2048x1277.jpg"), alt: "Cocina Line, vista lateral" },
-    ],
-  },
-  {
     slug: "urban",
     logo: { src: wp("2025/05/urbanneo.png"), ancho: 139, alto: 21 },
     nombre: "Urban",
@@ -71,6 +32,24 @@ export const colecciones: ColeccionInput[] = [
       { src: wp("2025/05/Linea-Urban-Camara-1-1-2048x1436.jpg"), alt: "Cocina Urban, vista general" },
       { src: wp("2025/05/Linea-Urban-Camara-3_bis-1.jpg"), alt: "Cocina Urban, detalle" },
       { src: wp("2025/05/Linea-Urban-Camra-2_bis-1.jpg"), alt: "Cocina Urban, isla" },
+    ],
+  },
+  {
+    slug: "london",
+    logo: { src: wp("2025/05/londonneo.png"), ancho: 141, alto: 23 },
+    nombre: "London",
+    linea: "cocina",
+    materiales: ["termolaminado-3d"],
+    bajada: "Carácter británico",
+    descripcion:
+      "Reinterpretando a los espacios británicos, London adquiere el carácter anglosajón. Su talante pop retro en contraste con algunos elementos vintage le da su personalidad y originalidad.",
+    parrafos: ["London llena de expresión, modernismo y vida propia a los espacios, volviéndolos acogedores."],
+    hero: wp("2025/05/Cocina-London_Camara_1-2048x1318.jpg"),
+    portada: wp("2025/05/Cocina-London_Camara_3.jpg"),
+    renders: [
+      { src: wp("2025/05/Cocina-London-Camara-2-2048x1733.jpg"), alt: "Cocina London, vista general" },
+      { src: wp("2025/05/Cocina-London_Camara_3.jpg"), alt: "Cocina London, detalle" },
+      { src: wp("2025/05/Cocina-London_Camara_1-2048x1318.jpg"), alt: "Cocina London, vista frontal" },
     ],
   },
   {
@@ -95,21 +74,24 @@ export const colecciones: ColeccionInput[] = [
     ],
   },
   {
-    slug: "london",
-    logo: { src: wp("2025/05/londonneo.png"), ancho: 141, alto: 23 },
-    nombre: "London",
+    slug: "pura",
+    logo: { src: wp("2025/05/puraproduc-1.png"), ancho: 178, alto: 27 },
+    nombre: "Pura",
     linea: "cocina",
-    materiales: ["termolaminado-3d"],
-    bajada: "Carácter británico",
+    materiales: ["melamina", "termolaminado-3d"],
+    bajada: "Razón y precisión",
     descripcion:
-      "Reinterpretando a los espacios británicos, London adquiere el carácter anglosajón. Su talante pop retro en contraste con algunos elementos vintage le da su personalidad y originalidad.",
-    parrafos: ["London llena de expresión, modernismo y vida propia a los espacios, volviéndolos acogedores."],
-    hero: wp("2025/05/Cocina-London_Camara_1-2048x1318.jpg"),
-    portada: wp("2025/05/Cocina-London_Camara_3.jpg"),
+      "Fundamentada en la razón y la precisión, es de formas sencillas y funcionales, pero con un lenguaje innovador.",
+    parrafos: [
+      "Esta línea renuncia a la ornamentación excesiva y otorga gran importancia al diseño práctico e inteligente.",
+      "Pura es rupturista respecto de los conceptos tradicionales del diseño.",
+    ],
+    hero: wp("2025/05/Linea-Pura-Camara-01-2048x1170.jpg"),
+    portada: wp("2025/05/Linea-Pura-Camara-02-1843x2048.jpg"),
     renders: [
-      { src: wp("2025/05/Cocina-London-Camara-2-2048x1733.jpg"), alt: "Cocina London, vista general" },
-      { src: wp("2025/05/Cocina-London_Camara_3.jpg"), alt: "Cocina London, detalle" },
-      { src: wp("2025/05/Cocina-London_Camara_1-2048x1318.jpg"), alt: "Cocina London, vista frontal" },
+      { src: wp("2025/05/Linea-Pura-Camara-01-2048x1170.jpg"), alt: "Cocina Pura, vista general" },
+      { src: wp("2025/05/Linea-Pura-Camara-02-1843x2048.jpg"), alt: "Cocina Pura, detalle" },
+      { src: wp("2025/05/Linea-Pura-Camara-03-1843x2048.jpg"), alt: "Cocina Pura, vista lateral" },
     ],
   },
   {
@@ -131,6 +113,24 @@ export const colecciones: ColeccionInput[] = [
       { src: wp("2025/05/Detalle-camara-2-scaled.jpg"), alt: "Cocina Herencia, detalle" },
       { src: wp("2025/05/Vista-Principal-2048x1318.jpg"), alt: "Cocina Herencia, vista principal" },
       { src: wp("2025/05/detalle-camara-3-2048x1638.jpg"), alt: "Cocina Herencia, detalle de módulos" },
+    ],
+  },
+  {
+    slug: "line",
+    logo: { src: wp("2025/05/lineneo.png"), ancho: 112, alto: 42 },
+    nombre: "Line",
+    linea: "cocina",
+    materiales: ["melamina"],
+    bajada: "Diseño posmoderno",
+    descripcion:
+      "Es la expresión del diseño posmoderno. Ecléctica, nos transporta en el tiempo: sus detalles nos llevan al pasado, su simplicidad nos sienta en el presente.",
+    parrafos: ["Y el ingenio de sus formas nos traslada al futuro."],
+    hero: wp("2025/05/Camara_01-2048x1219.jpg"),
+    portada: wp("2025/05/Camara_03_cambio-abrir-scaled.jpg"),
+    renders: [
+      { src: wp("2025/05/Camara_01-2048x1219.jpg"), alt: "Cocina Line, vista general" },
+      { src: wp("2025/05/Camara_03_cambio-abrir-scaled.jpg"), alt: "Cocina Line, detalle de apertura" },
+      { src: wp("2025/05/Camara_02-2048x1277.jpg"), alt: "Cocina Line, vista lateral" },
     ],
   },
   {

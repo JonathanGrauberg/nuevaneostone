@@ -56,7 +56,7 @@ export function Header() {
       <header
         className={`fixed inset-x-0 top-0 z-50 transition-[transform,background-color,border-color] duration-700 ease-lux ${
           hidden && !open ? "-translate-y-full" : ""
-        } ${scrolled || open ? "border-b border-line bg-bg/85 backdrop-blur-md" : `border-b border-transparent ${sobreOscuro ? "on-dark" : ""}`}`}
+        } ${scrolled || open ? "border-b border-line bg-bg/85 backdrop-blur-md" : `header-flotante border-b border-transparent ${sobreOscuro ? "on-dark" : ""}`}`}
       >
         <div className="container-x flex h-[72px] items-center justify-between">
           <Link href="/" aria-label="Neostone, inicio" className="relative block h-[30px] w-[137px]">

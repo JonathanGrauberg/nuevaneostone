@@ -12,7 +12,9 @@ const redirecciones: [string, string][] = [
   ["/cocinas", "/colecciones"],
   ["/productos", "/colecciones"],
   ["/inicio", "/"],
-  ["/beneficios-neostone", "/beneficios"],
+  // Beneficios pasó a ser una sección del home
+  ["/beneficios-neostone", "/#beneficios"],
+  ["/beneficios", "/#beneficios"],
   ["/solicitar-presupuesto", "/presupuesto"],
   ["/quiero-ser-distribuidor", "/distribuidores"],
   ["/servicio-post-venta", "/postventa"],

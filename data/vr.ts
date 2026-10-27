@@ -10,27 +10,6 @@ export const vr = {
   portal: { video: "/vr/portal-recorrido.mp4", poster: "/vr/portal-recorrido.jpg" },
   persona: "/vr/persona-vr.webp",
 
-  pasos: [
-    {
-      titulo: "Diseñamos tu cocina en 3D",
-      texto: "Con tus medidas reales modelamos cada módulo, mesada y terminación. Nada queda librado a la imaginación.",
-      video: "/vr/paso-1-diseno-3d.mp4",
-      poster: "/vr/paso-1-diseno-3d.jpg",
-    },
-    {
-      titulo: "Te ponés los lentes",
-      texto: "En el showroom te acompañamos a entrar a tu proyecto. Un par de segundos y ya estás adentro de tu cocina.",
-      video: "/vr/paso-2-lentes.mp4",
-      poster: "/vr/paso-2-lentes.jpg",
-    },
-    {
-      titulo: "La recorrés como si existiera",
-      texto: "Caminás, abrís el horno, probás los cajones y ves los colores con la luz real. Si algo no te convence, lo cambiamos antes de fabricar.",
-      video: "/vr/paso-3-dentro-vr.mp4",
-      poster: "/vr/paso-3-dentro-vr.jpg",
-    },
-  ],
-
   presentacion: {
     video: "/vr/presentacion.mp4",
     poster: "/vr/presentacion.jpg",

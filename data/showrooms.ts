@@ -89,6 +89,7 @@ export const showrooms: ShowroomInput[] = [
       { nombre: "Micaela Fernández Valle", rol: "Ventas", foto: asset("mica-fer.png") },
     ],
     // Sin fotos todavía (el sitio anterior mostraba un cartel de "Próximamente"). Cargar las reales acá.
+    frente: "/images/showrooms/frentes/bahia-blanca.jpg",
     galeria: [],
   },
   {
@@ -159,7 +160,7 @@ export const showrooms: ShowroomInput[] = [
       { nombre: "Candela", rol: "Ventas", foto: asset("Candela-mdp.png") },
       { nombre: "Lara", rol: "Ventas", foto: asset("Lara-mdp.png") },
     ],
-    frente: asset("frente-mardel.png"),
+    frente: "/images/showrooms/frentes/mar-del-plata.jpg",
     // Sin fotos todavía (el sitio anterior mostraba un cartel de "Próximamente"). Cargar las reales acá.
     galeria: [],
   },
@@ -209,7 +210,7 @@ export const showrooms: ShowroomInput[] = [
       { nombre: "Adriel S.", rol: "Equipo Comercial", foto: asset("adriel-s.png") },
       { nombre: "Agustín S.", rol: "Equipo Comercial", foto: asset("agustin-s.png") },
     ],
-    frente: asset("frente-tresarroyos2.png"),
+    frente: "/images/showrooms/frentes/tres-arroyos.jpg",
     galeria: galeria("2026/04", ["1", "2", "3", "4", "5"]),
   },
   {
@@ -278,7 +279,7 @@ export const showrooms: ShowroomInput[] = [
       { nombre: "Paulina D.", rol: "Ventas", foto: asset("paulina-d.png") },
       { nombre: "Ignacio S.", rol: "Ventas", foto: asset("ignacio-s.png") },
     ],
-    frente: asset("frente-cordoba-full.png"),
+    frente: "/images/showrooms/frentes/cordoba.jpg",
     // Sin fotos todavía (el sitio anterior mostraba un cartel de "Próximamente"). Cargar las reales acá.
     galeria: [],
   },
@@ -476,6 +477,7 @@ export const showrooms: ShowroomInput[] = [
       { dias: "sab", tramos: ["9:00-13:00"] },
     ],
     staff: [],
+    frente: "/images/showrooms/frentes/catamarca.jpg",
     galeria: [],
   },
   {

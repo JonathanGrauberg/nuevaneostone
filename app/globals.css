@@ -165,12 +165,55 @@ body {
   --line-strong: rgba(255, 255, 255, 0.35);
   color: var(--fg);
 }
+/*
+ * Navbar transparente con letras claras (siempre en modo oscuro; en modo claro, sobre
+ * secciones oscuras): "iluminación negra" detrás de las letras y un velo suave arriba,
+ * para que se lean sobre fotos claras.
+ */
+:root:not([data-theme="light"]) .header-flotante,
+.on-dark {
+  --sombra-nav: 0 0 2px rgba(0, 0, 0, 0.55), 0 1px 10px rgba(0, 0, 0, 0.65), 0 0 26px rgba(0, 0, 0, 0.45);
+}
+:root:not([data-theme="light"]) .header-flotante::before,
+.on-dark::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 -48px;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.42) 0%, rgba(0, 0, 0, 0.18) 55%, transparent 100%);
+}
+:root:not([data-theme="light"]) .header-flotante nav a,
+:root:not([data-theme="light"]) .header-flotante nav button,
 .on-dark nav a,
 .on-dark nav button {
-  text-shadow: 0 1px 14px rgba(0, 0, 0, 0.55);
+  text-shadow: var(--sombra-nav);
+}
+:root:not([data-theme="light"]) .header-flotante .logo,
+.on-dark .logo {
+  filter: drop-shadow(0 1px 8px rgba(0, 0, 0, 0.6));
 }
 :root[data-theme="light"] .on-dark .logo {
-  filter: drop-shadow(0 1px 10px rgba(0, 0, 0, 0.45));
+  filter: invert(0) drop-shadow(0 1px 8px rgba(0, 0, 0, 0.6));
+}
+:root:not([data-theme="light"]) .header-flotante button > span,
+.on-dark button > span {
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.7);
+}
+
+/* Modo claro con letras oscuras sobre foto: el mismo recurso, pero con halo del color de la página. */
+:root[data-theme="light"] .header-flotante:not(.on-dark)::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 -48px;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--bg) 82%, transparent) 0%, color-mix(in srgb, var(--bg) 40%, transparent) 55%, transparent 100%);
+}
+:root[data-theme="light"] .header-flotante:not(.on-dark) nav a,
+:root[data-theme="light"] .header-flotante:not(.on-dark) nav button {
+  color: var(--fg);
+  text-shadow: 0 0 2px var(--bg), 0 0 10px var(--bg), 0 0 24px var(--bg);
 }
 
 /*

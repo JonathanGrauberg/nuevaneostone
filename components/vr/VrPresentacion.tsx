@@ -57,7 +57,7 @@ export function VrPresentacion({ video, poster, titulo, puntos }: Props) {
               <span className="flex h-16 w-16 items-center justify-center border border-white/70 transition-all duration-500 group-hover:scale-105 group-hover:border-white group-hover:bg-white group-hover:text-black">
                 ▶
               </span>
-              <span className="font-display text-[11px] tracking-[0.3em] uppercase">Ver video · 1 min</span>
+              <span className="font-display text-[11px] tracking-[0.3em] uppercase">Ver video · 1:30</span>
             </button>
           )}
         </div>

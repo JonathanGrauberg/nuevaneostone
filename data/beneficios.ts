@@ -13,7 +13,7 @@ export const beneficios: { titulo: string; destacado: string; imagen: string; te
     destacado: "Cumplir con los tiempos prometidos.",
     imagen: "/images/home/frente-planta-crespo.jpg",
     texto: [
-      "Uno de nuestros principales activos: cumplir con los tiempos prometidos. Por eso garantizamos plazos de entrega confiables y la calidad total de nuestros productos.",
+      "Uno de nuestros pilares fundamentales, cumplir con los tiempos prometidos, desde el diseño hasta su colocación en obra certificada. Garantizamos plazos de entrega confiables y la calidad total de nuestros productos.",
     ],
   },
   {

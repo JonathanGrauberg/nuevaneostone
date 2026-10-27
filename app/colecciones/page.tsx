@@ -5,7 +5,7 @@ import { getColecciones } from "@/lib/content";
 export const metadata: Metadata = {
   title: "Colecciones",
   description:
-    "Cocinas Pura, Line, Urban, Ciro, London y Herencia, placards y vestidores. Conocé cada colección Neostone y todas sus terminaciones.",
+    "Cocinas Urban, London, Ciro, Pura, Herencia y Line, placards y vestidores. Conocé cada colección Neostone y todas sus terminaciones.",
 };
 
 export default function ColeccionesPage() {

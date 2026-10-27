@@ -4,7 +4,6 @@ import Link from "next/link";
 import { Reveal } from "@/components/motion/Reveal";
 import { WordReveal } from "@/components/motion/WordReveal";
 import { VrHero } from "@/components/vr/VrHero";
-import { VrPasos } from "@/components/vr/VrPasos";
 import { VrPresentacion } from "@/components/vr/VrPresentacion";
 import { site } from "@/data/site";
 import { vr } from "@/data/vr";
@@ -14,7 +13,7 @@ export const metadata: Metadata = {
   title: "Experiencia VR",
   description:
     "Viví tu cocina antes de tenerla: con lentes de realidad virtual recorrés tu proyecto Neostone en escala real. Primera y única en el rubro en el país.",
-  openGraph: { images: [vr.pasos[2].poster] },
+  openGraph: { images: [vr.portal.poster] },
 };
 
 export default function ExperienciaVrPage() {
@@ -23,8 +22,6 @@ export default function ExperienciaVrPage() {
   return (
     <>
       <VrHero sello={vr.sello} titulo={vr.titulo} bajada={vr.bajada} portal={vr.portal} persona={vr.persona} />
-
-      <VrPasos pasos={vr.pasos} />
 
       <VrPresentacion {...vr.presentacion} />
 

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { BeneficiosAcordeon } from "@/components/beneficios/BeneficiosAcordeon";
 import { ColeccionesScroll } from "@/components/home/ColeccionesScroll";
 import { Counter } from "@/components/home/Counter";
 import { DelPlanoATuCasa } from "@/components/home/DelPlanoATuCasa";
@@ -7,15 +8,10 @@ import { HomeHero } from "@/components/home/HomeHero";
 import { ImageReveal, Reveal } from "@/components/motion/Reveal";
 import { WordReveal } from "@/components/motion/WordReveal";
 import { ShowroomFinder } from "@/components/showrooms/ShowroomFinder";
-import { heroSlides, nosotros } from "@/data/home";
+import { beneficios, beneficiosIntro } from "@/data/beneficios";
+import { nosotros } from "@/data/home";
 import { site } from "@/data/site";
 import { getColecciones, getShowroomsResumen } from "@/lib/content";
-
-const destacados = [
-  { titulo: "Entrega en tiempo", texto: "Uno de nuestros principales activos: cumplir con los tiempos prometidos, desde el diseño hasta la colocación en obra." },
-  { titulo: "Garantía de 5 años", texto: "Somos fabricantes: supervisamos cada proceso y respaldamos cada mueble por escrito." },
-  { titulo: "Todo en un lugar", texto: "Desde el primer boceto hasta la última mesada, hablás siempre con las mismas personas. Diseñamos tus muebles y fabricamos tus mesadas en nuestra planta, con corte y pulido de última generación, para que todo combine a la perfección y llegue a tiempo." },
-];
 
 export default function Home() {
   const colecciones = getColecciones();
@@ -23,7 +19,7 @@ export default function Home() {
 
   return (
     <>
-      <HomeHero slides={heroSlides} />
+      <HomeHero slides={colecciones.filter((c) => c.linea === "cocina").slice(0, 5).map((c) => c.hero)} />
 
       {/* ─── 01 NOSOTROS ──────────────────────────────────── */}
       {/* Foto del frente a sangre, con degradé hacia el texto (derecha) y contadores debajo */}
@@ -66,6 +62,12 @@ export default function Home() {
                   <p className="mt-6 max-w-lg leading-relaxed text-fg-soft">{p}</p>
                 </Reveal>
               ))}
+              <Reveal delay={0.3}>
+                <p className="mt-8 flex items-center gap-3 border-t border-line pt-6 font-display text-[11px] tracking-[0.24em] text-fg-soft uppercase">
+                  <span className="h-1.5 w-1.5 shrink-0 bg-accent" aria-hidden />
+                  {nosotros.planta}
+                </p>
+              </Reveal>
             </div>
           </div>
 
@@ -93,23 +95,18 @@ export default function Home() {
       {/* ─── 03 EXPERIENCIA VR: del plano a tu casa ──────── */}
       <DelPlanoATuCasa />
 
-      {/* ─── 04 POR QUÉ NEOSTONE ──────────────────────────── */}
-      <section className="container-x py-28 md:py-40">
-        <div className="mb-14 flex items-end justify-between">
-          <p className="eyebrow">04 — Por qué Neostone</p>
-          <Link href="/beneficios" className="link-line">
-            Beneficios →
-          </Link>
-        </div>
-        <div className="grid md:grid-cols-3">
-          {destacados.map((d, i) => (
-            <Reveal key={d.titulo} delay={i * 0.1} className="border-t border-line py-8 md:border-t-0 md:border-l md:px-10 md:first:border-l-0 md:first:pl-0">
-              <p className="font-display text-[11px] tracking-[0.32em] text-accent">0{i + 1}</p>
-              <h3 className="mt-5 font-display text-2xl font-light">{d.titulo}</h3>
-              <p className="mt-4 leading-relaxed text-fg-soft">{d.texto}</p>
+      {/* ─── 04 BENEFICIOS NEOSTONE ─────────────────────── */}
+      <section id="beneficios" className="container-x scroll-mt-20 py-28 md:py-40">
+        <div className="mb-16 grid gap-8 md:grid-cols-12">
+          <p className="eyebrow md:col-span-3">04 — Beneficios Neostone</p>
+          <div className="md:col-span-9">
+            <WordReveal lines={["Más que muebles:", "*un* *respaldo.*"]} className="font-display text-4xl leading-tight font-extralight md:text-6xl" />
+            <Reveal delay={0.2}>
+              <p className="mt-8 max-w-xl leading-relaxed text-fg-soft">{beneficiosIntro}</p>
             </Reveal>
-          ))}
+          </div>
         </div>
+        <BeneficiosAcordeon beneficios={beneficios} />
       </section>
 
       {/* ─── 05 SHOWROOMS ─────────────────────────────────── */}
