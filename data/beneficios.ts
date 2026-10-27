@@ -1,3 +1,4 @@
+import type { Pilar } from "@/components/beneficios/IconoPilar";
 import { asset, wp } from "@/lib/img";
 
 export const beneficiosIntro =
@@ -6,11 +7,15 @@ export const beneficiosIntro =
 /**
  * Beneficios: el orden del array es el orden en la página.
  * destacado → frase corta que aparece grande sobre la imagen cuando el beneficio está activo.
+ * icono → ícono animado del pilar (components/beneficios/IconoPilar.tsx).
  */
-export const beneficios: { titulo: string; destacado: string; imagen: string; texto: string[] }[] = [
+export type Beneficio = { titulo: string; destacado: string; icono: Pilar; imagen: string; texto: string[] };
+
+export const beneficios: Beneficio[] = [
   {
     titulo: "Entrega en tiempo y forma",
     destacado: "Cumplir con los tiempos prometidos.",
+    icono: "entrega",
     imagen: "/images/home/frente-planta-crespo.jpg",
     texto: [
       "Uno de nuestros pilares fundamentales, cumplir con los tiempos prometidos, desde el diseño hasta su colocación en obra certificada. Garantizamos plazos de entrega confiables y la calidad total de nuestros productos.",
@@ -19,6 +24,7 @@ export const beneficios: { titulo: string; destacado: string; imagen: string; te
   {
     titulo: "Atención personalizada",
     destacado: "Calidad y calidez en cada proyecto.",
+    icono: "atencion",
     imagen: asset("frente-rosario.png"),
     texto: [
       "Cada proyecto es único, por eso lo acompañamos en cada etapa con atención personalizada, calidad y calidez. Contamos con profesionales de mobiliario de cocina altamente calificados.",
@@ -28,6 +34,7 @@ export const beneficios: { titulo: string; destacado: string; imagen: string; te
   {
     titulo: "Garantía de 5 años",
     destacado: "Respaldo escrito, 5 años.",
+    icono: "garantia",
     imagen: wp("2025/05/Detalle-Marca.jpg"),
     texto: [
       "Respaldamos nuestra experiencia con una garantía real. Somos fabricantes de todos nuestros amoblamientos y supervisamos cada proceso de producción bajo normas de calidad estrictas.",
@@ -37,6 +44,7 @@ export const beneficios: { titulo: string; destacado: string; imagen: string; te
   {
     titulo: "Virtual Experience",
     destacado: "Tu cocina, en escala real.",
+    icono: "virtual",
     imagen: wp("2025/05/Cocina-London-Camara-2-2048x1733.jpg"),
     texto: [
       "Con nuestra tecnología exclusiva podés anticipar tu amoblamiento: visualizar en escala real el diseño de tu cocina, vestidor o espacio.",
@@ -46,6 +54,7 @@ export const beneficios: { titulo: string; destacado: string; imagen: string; te
   {
     titulo: "Todo en un mismo lugar",
     destacado: "Del primer boceto a la última mesada.",
+    icono: "integral",
     imagen: wp("2025/05/Linea-Urban-Camara-1-1-2048x1436.jpg"),
     texto: [
       "Desde el primer boceto hasta la última mesada, hablás siempre con las mismas personas. Diseñamos tus muebles y fabricamos tus mesadas en nuestra planta, con corte y pulido de última generación, para que todo combine a la perfección y llegue a tiempo.",
@@ -54,6 +63,7 @@ export const beneficios: { titulo: string; destacado: string; imagen: string; te
   {
     titulo: "Sustentabilidad",
     destacado: "Compromiso con el entorno.",
+    icono: "sustentabilidad",
     imagen: wp("2025/05/Camara_01-2048x1219.jpg"),
     texto: [
       "Polvillo 0: un sistema de aspiración industrial captura y elimina el polvo generado en los procesos de corte y lijado.",

@@ -241,3 +241,216 @@ body {
   color: #f4f1ec;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.55), 0 2px 18px rgba(0, 0, 0, 0.55);
 }
+
+/* ─── Íconos de los pilares (beneficios) ───
+   Trazo fino en el color del texto y un único detalle en el acento. Se dibujan al montarse
+   y después quedan con un movimiento mínimo en loop. */
+.ns-icon {
+  overflow: visible;
+}
+.ns-s {
+  fill: none;
+  stroke: var(--fg);
+  stroke-width: 1.25;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.ns-r {
+  stroke: var(--accent);
+}
+.ns-f {
+  fill: var(--fg);
+  stroke: none;
+}
+.ns-fr {
+  fill: var(--accent);
+  stroke: none;
+}
+.ns-d {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: nsDraw 1.4s cubic-bezier(0.65, 0, 0.25, 1) forwards;
+}
+.ns-t {
+  transform-box: view-box;
+}
+@keyframes nsDraw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes nsFade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes nsGlow {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+/* 01 Entrega: la aguja da la vuelta y se detiene en la marca de las 12 */
+.ns1-hand {
+  transform-origin: 32px 32px;
+  animation: ns1Sweep 2s cubic-bezier(0.25, 0, 0.05, 1) 0.5s both;
+}
+.ns1-mark {
+  animation: nsDraw 0.5s ease 0.2s forwards, ns1Hit 0.6s ease 2.45s, nsGlow 4.5s ease-in-out 3.5s infinite;
+}
+@keyframes ns1Sweep {
+  from {
+    transform: rotate(-330deg);
+  }
+  to {
+    transform: rotate(0);
+  }
+}
+@keyframes ns1Hit {
+  50% {
+    stroke-width: 3;
+  }
+}
+/* 02 Atención: huella que se dibuja del centro hacia afuera */
+.ns2-a {
+  animation: nsDraw 1.1s cubic-bezier(0.65, 0, 0.25, 1) forwards, ns2Wave 4.8s ease-in-out infinite;
+}
+@keyframes ns2Wave {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+/* 03 Garantía: escudo con onda */
+.ns3-ripple {
+  transform-origin: 32px 32px;
+  opacity: 0;
+  animation: ns3Ripple 4s ease-out 2.2s infinite;
+}
+@keyframes ns3Ripple {
+  0% {
+    transform: scale(1);
+    opacity: 0.55;
+  }
+  70%,
+  100% {
+    transform: scale(1.28);
+    opacity: 0;
+  }
+}
+/* 04 Virtual Experience: módulo escaneado */
+.ns4-scan {
+  animation: ns4Scan 3.2s cubic-bezier(0.45, 0, 0.55, 1) 1.6s infinite both;
+}
+.ns4-fill {
+  transform-origin: 32px 10px;
+  animation: ns4Fill 3.2s cubic-bezier(0.45, 0, 0.55, 1) 1.6s infinite both;
+}
+@keyframes ns4Scan {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  8% {
+    opacity: 1;
+  }
+  65% {
+    transform: translateY(42px);
+    opacity: 1;
+  }
+  75%,
+  100% {
+    transform: translateY(42px);
+    opacity: 0;
+  }
+}
+@keyframes ns4Fill {
+  0% {
+    transform: scaleY(0);
+    opacity: 1;
+  }
+  65% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+  90%,
+  100% {
+    transform: scaleY(1);
+    opacity: 0;
+  }
+}
+/* 05 Todo en un lugar: cuatro módulos que encajan */
+.ns5-m {
+  animation: ns5In 1s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+.ns5-b {
+  animation: ns5Breathe 5s ease-in-out 3s infinite;
+}
+.ns5-dot {
+  transform-origin: 32px 32px;
+  animation: ns5Pop 0.5s cubic-bezier(0.3, 1.6, 0.5, 1) 2s both, nsGlow 4.5s ease-in-out 3s infinite;
+}
+@keyframes ns5In {
+  from {
+    transform: translate(var(--dx), var(--dy));
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+@keyframes ns5Breathe {
+  0%,
+  100% {
+    transform: none;
+  }
+  50% {
+    transform: translate(calc(var(--dx) * -0.09), calc(var(--dy) * -0.09));
+  }
+}
+@keyframes ns5Pop {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+/* 06 Sustentabilidad: hoja que se balancea */
+.ns6-leaf {
+  transform-origin: 16px 48px;
+  animation: ns6Sway 6s ease-in-out 2.4s infinite;
+}
+@keyframes ns6Sway {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+  30% {
+    transform: rotate(-3deg);
+  }
+  70% {
+    transform: rotate(2deg);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ns-icon * {
+    animation: none !important;
+    stroke-dashoffset: 0 !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .ns3-ripple {
+    display: none;
+  }
+}
