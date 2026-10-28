@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { BeneficiosAcordeon } from "@/components/beneficios/BeneficiosAcordeon";
+import { BeneficiosLista } from "@/components/beneficios/BeneficiosLista";
 import { ColeccionesScroll } from "@/components/home/ColeccionesScroll";
 import { Counter } from "@/components/home/Counter";
 import { DelPlanoATuCasa } from "@/components/home/DelPlanoATuCasa";
@@ -106,7 +106,7 @@ export default function Home() {
             </Reveal>
           </div>
         </div>
-        <BeneficiosAcordeon beneficios={beneficios} />
+        <BeneficiosLista beneficios={beneficios} />
       </section>
 
       {/* ─── 05 SHOWROOMS ─────────────────────────────────── */}
