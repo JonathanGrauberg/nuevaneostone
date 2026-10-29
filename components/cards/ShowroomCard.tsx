@@ -15,6 +15,7 @@ export function ShowroomCard({ s, km }: { s: ShowroomResumen; km?: number }) {
           fill
           sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
           className="object-cover transition-transform duration-[1400ms] ease-lux group-hover:scale-[1.06]"
+          style={{ objectPosition: s.encuadre }}
         />
       ) : (
         <div className="absolute inset-x-0 top-0 bottom-1/3">

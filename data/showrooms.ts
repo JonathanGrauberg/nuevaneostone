@@ -236,6 +236,7 @@ export const showrooms: ShowroomInput[] = [
       { nombre: "Carolina", rol: "Ventas", foto: asset("carolinat.png") },
     ],
     frente: asset("frente-trelew.png"),
+    frenteEncuadre: "8% 50%", // el cartel NEOSTONE está a la izquierda
     // La foto "1-4" cortaba el cartel ("OSTONE"): la primera de la galería es el frente completo.
     galeria: [asset("frente-trelew.png"), ...galeria("2025/08", ["2-4", "3-4", "4-5", "5-4", "6-3", "7"])],
   },
@@ -307,7 +308,8 @@ export const showrooms: ShowroomInput[] = [
       { nombre: "Andrés Franco", rol: "Propietario y Administración", foto: asset("andres-f.png") },
       { nombre: "Franco", rol: "Ventas", foto: asset("franco-vm.png") },
     ],
-    // Sin fotos todavía (el sitio anterior mostraba un cartel de "Próximamente"). Cargar las reales acá.
+    frente: "/images/showrooms/frentes/villa-maria.jpg",
+    // Sin fotos del interior todavía. Cargar las reales acá.
     galeria: [],
   },
   {

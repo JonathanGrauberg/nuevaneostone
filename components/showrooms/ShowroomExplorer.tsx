@@ -120,7 +120,7 @@ export function ShowroomExplorer({ showrooms, inicial }: { showrooms: ShowroomMa
           >
             <div className="relative aspect-[16/9] overflow-hidden bg-surface">
               {s.imagen ? (
-                <Image src={s.imagen} alt={`Showroom ${s.ciudad}`} fill sizes="(min-width: 768px) 38vw, 100vw" className="object-cover" />
+                <Image src={s.imagen} alt={`Showroom ${s.ciudad}`} fill sizes="(min-width: 768px) 38vw, 100vw" className="object-cover" style={{ objectPosition: s.encuadre }} />
               ) : (
                 <ImagenPendiente compacto texto="Foto próximamente" />
               )}

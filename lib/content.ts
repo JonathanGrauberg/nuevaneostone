@@ -110,6 +110,8 @@ export function getShowroom(slug: string) {
 /** Datos mínimos para listados y buscador (lo que viaja al navegador). */
 export type ShowroomResumen = Pick<Showroom, "slug" | "ciudad" | "provincia" | "nombre" | "geo" | "estado" | "casaCentral"> & {
   imagen?: string;
+  /** object-position de la imagen en tarjetas (solo aplica al frente) */
+  encuadre?: string;
 };
 
 export function getShowroomsResumen(): ShowroomResumen[] {
@@ -122,6 +124,7 @@ export function getShowroomsResumen(): ShowroomResumen[] {
     estado: s.estado,
     casaCentral: s.casaCentral,
     imagen: s.frente ?? s.galeria[0],
+    encuadre: s.frente ? s.frenteEncuadre : undefined,
   }));
 }
 
@@ -138,6 +141,7 @@ export function getShowroomsMapa(): ShowroomMapa[] {
     estado: s.estado,
     casaCentral: s.casaCentral,
     imagen: s.frente ?? s.galeria[0],
+    encuadre: s.frente ? s.frenteEncuadre : undefined,
     direccion: s.direccion,
     horarios: s.horarios,
     whatsapp: s.whatsapp,

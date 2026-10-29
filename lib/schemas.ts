@@ -72,6 +72,8 @@ export const showroomSchema = z.object({
   staff: z.array(z.object({ nombre: z.string(), rol: z.string(), foto: imagen.optional() })),
   /** Sin frente ni galería se muestran placeholders de "Imagen próximamente". */
   frente: imagen.optional(),
+  /** Encuadre del frente en las tarjetas (object-position CSS, ej. "20% 50%"), si el centro corta el cartel. */
+  frenteEncuadre: z.string().optional(),
   galeria: z.array(imagen),
 });
 
