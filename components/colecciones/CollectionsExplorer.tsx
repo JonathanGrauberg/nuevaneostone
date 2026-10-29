@@ -6,6 +6,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { ColeccionVista } from "@/lib/content";
 import { easeLux, ImageReveal, Reveal } from "@/components/motion/Reveal";
+import { Ampliable, Ampliables } from "@/components/ui/Ampliable";
 import { FinishesGrid } from "./FinishesGrid";
 import { LogoColeccion } from "./LogoColeccion";
 
@@ -246,10 +247,13 @@ export function CollectionsExplorer({ colecciones, inicial }: { colecciones: Col
       <section className="border-t border-line py-24">
         <AnimatePresence mode="wait">
           <motion.div key={c.slug} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.6 }}>
+            <Ampliables fotos={c.renders}>
             <div className="container-x grid gap-px md:grid-cols-12">
               {c.renders[0] && (
                 <ImageReveal className="relative aspect-[16/10] md:col-span-8">
-                  <Image src={c.renders[0].src} alt={c.renders[0].alt} fill sizes="(min-width: 768px) 66vw, 100vw" className="object-cover" />
+                  <Ampliable indice={0} etiqueta={c.renders[0].alt}>
+                    <Image src={c.renders[0].src} alt={c.renders[0].alt} fill sizes="(min-width: 768px) 66vw, 100vw" className="object-cover" />
+                  </Ampliable>
                 </ImageReveal>
               )}
               <div className="flex flex-col justify-end gap-6 py-10 md:col-span-4 md:py-0 md:pl-12">
@@ -261,10 +265,13 @@ export function CollectionsExplorer({ colecciones, inicial }: { colecciones: Col
               </div>
               {c.renders.slice(1).map((r, i) => (
                 <ImageReveal key={r.src} delay={i * 0.1} className="relative aspect-[4/5] md:col-span-6">
-                  <Image src={r.src} alt={r.alt} fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover" />
+                  <Ampliable indice={i + 1} etiqueta={r.alt}>
+                    <Image src={r.src} alt={r.alt} fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover" />
+                  </Ampliable>
                 </ImageReveal>
               ))}
             </div>
+            </Ampliables>
           </motion.div>
         </AnimatePresence>
         <div className="container-x mt-24 flex flex-col items-start justify-between gap-8 border-t border-line pt-12 md:flex-row md:items-center">

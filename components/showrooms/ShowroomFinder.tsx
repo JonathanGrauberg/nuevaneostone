@@ -29,8 +29,9 @@ export function ShowroomFinder({ showrooms, variante = "grid", buscador: conBusc
       .filter((s) => !nq || normalizar(`${s.ciudad} ${s.provincia} ${s.nombre}`).includes(nq))
       .map((s) => ({ s, km: yo ? distanciaKm(yo, s.geo) : undefined }));
     if (yo) lista = lista.sort((a, b) => a.km! - b.km!);
+    else if (variante === "compacto") lista = lista.sort((a, b) => a.s.ciudad.localeCompare(b.s.ciudad, "es"));
     return lista;
-  }, [q, yo, showrooms]);
+  }, [q, yo, showrooms, variante]);
 
   const ubicarme = () => {
     setGeoEstado("buscando");
@@ -90,21 +91,21 @@ export function ShowroomFinder({ showrooms, variante = "grid", buscador: conBusc
           </ul>
         ) : (
           <p className="mt-5 text-sm leading-loose text-fg-soft">
-            {showrooms.slice(0, 7).map((s, i) => (
-              <span key={s.slug}>
-                {i > 0 && " · "}
-                <Link href={`/showrooms/${s.slug}`} className="transition-colors hover:text-fg">
-                  {s.ciudad}
-                </Link>
-              </span>
-            ))}
-            {showrooms.length > 7 && (
-              <Link href="/showrooms" className="ml-2 text-fg">
-                +{showrooms.length - 7}
-              </Link>
-            )}
+            {[...showrooms]
+              .sort((a, b) => a.ciudad.localeCompare(b.ciudad, "es"))
+              .map((s, i) => (
+                <span key={s.slug}>
+                  {i > 0 && " · "}
+                  <Link href={`/showrooms/${s.slug}`} className="transition-colors hover:text-fg">
+                    {s.ciudad}
+                  </Link>
+                </span>
+              ))}
           </p>
         )}
+        <Link href="/showrooms#mapa" className="btn-outline mt-8 inline-flex">
+          Ver mapa
+        </Link>
       </div>
     );
   }

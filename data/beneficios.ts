@@ -1,8 +1,5 @@
 import type { Pilar } from "@/components/beneficios/IconoPilar";
 
-export const beneficiosIntro =
-  "Trabajamos con seriedad y honestidad, respetando al cliente, las normas, los acuerdos y el entorno. Nuestros procesos, controlados por programas de gestión y tecnología de punta, garantizan eficiencia, agilidad y eficacia.";
-
 /**
  * Beneficios: el orden del array es el orden en la página.
  * icono → ícono animado del pilar (components/beneficios/IconoPilar.tsx).

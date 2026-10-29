@@ -1,119 +1,137 @@
 "use client";
 
 import Link from "next/link";
-import { motion, useMotionValueEvent, useReducedMotion, useScroll, useSpring, useTransform } from "motion/react";
-import { useEffect, useRef, useState, useSyncExternalStore } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ProductCard } from "@/components/cards/ProductCard";
 import { Reveal } from "@/components/motion/Reveal";
 import { WordReveal } from "@/components/motion/WordReveal";
 
 type Item = { slug: string; nombre: string; bajada: string; portada: string };
 
-const MQ = "(min-width: 768px)";
-const subscribeMQ = (cb: () => void) => {
-  const m = window.matchMedia(MQ);
-  m.addEventListener("change", cb);
-  return () => m.removeEventListener("change", cb);
-};
-
 /**
- * Colecciones del home con scroll horizontal anclado: al llegar a la sección,
- * el scroll vertical desplaza las tarjetas hacia la izquierda hasta la última.
- * En mobile o con "reducir movimiento" queda un carrusel normal deslizable.
+ * Colecciones del home en un carrusel común, alineado al contenedor (aire a ambos lados):
+ * se desliza con el dedo / trackpad, arrastrando con el mouse o con las flechas ‹ ›.
  */
 export function ColeccionesScroll({ colecciones }: { colecciones: Item[] }) {
-  const esDesktop = useSyncExternalStore(subscribeMQ, () => window.matchMedia(MQ).matches, () => false);
-  const reducir = useReducedMotion();
-  const anclado = esDesktop && !reducir;
-
-  const seccionRef = useRef<HTMLElement>(null);
   const pistaRef = useRef<HTMLDivElement>(null);
-  const [recorrido, setRecorrido] = useState(0);
+  const [bordes, setBordes] = useState({ inicio: true, fin: false });
 
-  // Cuánto hay que desplazar la pista para que la última tarjeta quede entera a la vista.
   useEffect(() => {
-    if (!anclado || !pistaRef.current) return;
     const pista = pistaRef.current;
-    const medir = () => setRecorrido(Math.max(0, pista.scrollWidth - window.innerWidth));
+    if (!pista) return;
+    const medir = () =>
+      setBordes({ inicio: pista.scrollLeft <= 4, fin: pista.scrollLeft + pista.clientWidth >= pista.scrollWidth - 4 });
     medir();
-    const ro = new ResizeObserver(medir);
-    ro.observe(pista);
+    pista.addEventListener("scroll", medir, { passive: true });
     window.addEventListener("resize", medir);
     return () => {
-      ro.disconnect();
+      pista.removeEventListener("scroll", medir);
       window.removeEventListener("resize", medir);
     };
-  }, [anclado]);
+  }, []);
 
-  const { scrollYProgress } = useScroll({ target: seccionRef, offset: ["start start", "end end"] });
-  const progreso = useSpring(scrollYProgress, { stiffness: 140, damping: 30, mass: 0.35 });
-  const x = useTransform(progreso, [0, 1], [0, -recorrido]);
-  // La página no queda bloqueada del todo: el bloque sube apenas (5% de la pantalla) mientras avanza.
-  const deriva = useTransform(progreso, [0, 1], ["0vh", "-5vh"]);
-  const [actual, setActual] = useState(1);
-  useMotionValueEvent(progreso, "change", (v) => setActual(Math.min(colecciones.length, Math.floor(v * colecciones.length) + 1)));
+  // Arrastre con el mouse (en touch el desplazamiento es nativo). Mientras se arrastra
+  // se apaga el snap; al soltar vuelve y acomoda la tarjeta más cercana.
+  const arrastre = useRef<{ x: number; scroll: number; movio: boolean } | null>(null);
+  const recienArrastrado = useRef(false);
+  const alPresionar = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (e.pointerType !== "mouse" || e.button !== 0) return;
+    arrastre.current = { x: e.clientX, scroll: e.currentTarget.scrollLeft, movio: false };
+  };
+  const alMover = (e: React.PointerEvent<HTMLDivElement>) => {
+    const a = arrastre.current;
+    if (!a) return;
+    const dx = e.clientX - a.x;
+    if (!a.movio && Math.abs(dx) > 5) {
+      a.movio = true;
+      e.currentTarget.setPointerCapture(e.pointerId);
+      e.currentTarget.style.scrollSnapType = "none";
+      e.currentTarget.style.cursor = "grabbing";
+    }
+    if (a.movio) e.currentTarget.scrollLeft = a.scroll - dx;
+  };
+  const alSoltar = (e: React.PointerEvent<HTMLDivElement>) => {
+    const a = arrastre.current;
+    arrastre.current = null;
+    if (!a?.movio) return;
+    const pista = e.currentTarget;
+    pista.style.cursor = "";
+    // Acomoda a la tarjeta más cercana y vuelve a activar el snap
+    const ancho = (pista.firstElementChild as HTMLElement).offsetWidth + 1;
+    pista.scrollTo({ left: Math.round(pista.scrollLeft / ancho) * ancho, behavior: "smooth" });
+    setTimeout(() => (pista.style.scrollSnapType = ""), 500);
+    // Que el arrastre no termine abriendo la colección (el click llega justo después de soltar)
+    recienArrastrado.current = true;
+    setTimeout(() => (recienArrastrado.current = false), 0);
+  };
 
-  const encabezado = (
-    <div className="container-x mb-10 flex items-end justify-between gap-6">
-      <div>
-        <p className="eyebrow">02 — Colecciones</p>
-        <WordReveal
-          lines={["Una colección para cada", "*forma* *de* *habitar.*"]}
-          className="mt-6 font-display text-3xl leading-tight font-extralight md:text-5xl"
-        />
-      </div>
-      <div className="hidden shrink-0 flex-col items-end gap-5 md:flex">
-        {anclado && (
-          <div className="flex items-center gap-4">
-            <span className="eyebrow tabular-nums">
-              <span className="text-fg">{String(actual).padStart(2, "0")}</span> — {String(colecciones.length).padStart(2, "0")}
-            </span>
-            <span className="relative block h-px w-32 bg-line-strong">
-              <motion.span className="absolute inset-y-0 left-0 origin-left bg-accent" style={{ width: "100%", scaleX: progreso }} />
-            </span>
+  const mover = (dir: 1 | -1) => {
+    const pista = pistaRef.current;
+    const tarjeta = pista?.firstElementChild as HTMLElement | null;
+    if (!pista || !tarjeta) return;
+    pista.scrollBy({ left: dir * (tarjeta.offsetWidth + 1), behavior: "smooth" });
+  };
+
+  const flecha = (dir: 1 | -1, deshabilitada: boolean) => (
+    <button
+      type="button"
+      onClick={() => mover(dir)}
+      disabled={deshabilitada}
+      aria-label={dir === 1 ? "Siguiente colección" : "Colección anterior"}
+      className="grid size-12 place-items-center border border-line-strong font-display text-xl font-light transition-colors hover:border-accent hover:text-accent disabled:pointer-events-none disabled:opacity-30"
+    >
+      {dir === 1 ? "›" : "‹"}
+    </button>
+  );
+
+  return (
+    <section className="relative pt-24 pb-28 md:pt-36 md:pb-40">
+      <div className="container-x mb-10 flex items-end justify-between gap-6">
+        <div>
+          <p className="eyebrow">01 — Colecciones</p>
+          <WordReveal
+            lines={["Una colección para cada", "*forma* *de* *habitar.*"]}
+            className="mt-6 font-display text-3xl leading-tight font-extralight md:text-5xl"
+          />
+        </div>
+        <div className="flex shrink-0 flex-col items-end gap-5">
+          <div className="flex gap-2">
+            {flecha(-1, bordes.inicio)}
+            {flecha(1, bordes.fin)}
           </div>
-        )}
+          <Link href="/colecciones" className="link-line hidden md:inline-block">
+            Ver todas →
+          </Link>
+        </div>
+      </div>
+      <div className="container-x">
+        <div
+          ref={pistaRef}
+          onPointerDown={alPresionar}
+          onPointerMove={alMover}
+          onPointerUp={alSoltar}
+          onPointerCancel={alSoltar}
+          onDragStart={(e) => e.preventDefault()}
+          onClickCapture={(e) => {
+            if (recienArrastrado.current) {
+              e.preventDefault();
+              e.stopPropagation();
+            }
+          }}
+          className="no-scrollbar flex cursor-grab snap-x snap-mandatory gap-px overflow-x-auto select-none"
+        >
+          {colecciones.map((c, i) => (
+            <Reveal key={c.slug} delay={i * 0.06} className="w-[80%] shrink-0 snap-start sm:w-[calc((100%-1px)/2)] md:w-[calc((100%-2px)/3)] lg:w-[calc((100%-3px)/4)]">
+              <ProductCard href={`/colecciones/${c.slug}`} nombre={c.nombre} bajada={c.bajada} imagen={c.portada} indice={i} />
+            </Reveal>
+          ))}
+        </div>
+      </div>
+      <div className="container-x mt-8 md:hidden">
         <Link href="/colecciones" className="link-line">
           Ver todas →
         </Link>
       </div>
-    </div>
-  );
-
-  const tarjetas = colecciones.map((c, i) => (
-    <Reveal
-      key={c.slug}
-      delay={anclado ? 0 : i * 0.06}
-      className={anclado ? "w-[min(23vw,45svh)] shrink-0" : "w-[70vw] shrink-0 snap-start sm:w-[42vw]"}
-    >
-      <ProductCard href={`/colecciones/${c.slug}`} nombre={c.nombre} bajada={c.bajada} imagen={c.portada} indice={i} />
-    </Reveal>
-  ));
-
-  // Siempre la misma <section> (con ref) para que useScroll quede enganchado desde el primer render;
-  // solo cambia el modo: anclado (desktop) o carrusel deslizable (mobile / reducir movimiento).
-  return (
-    <section
-      ref={seccionRef}
-      className={anclado ? "relative" : "relative pb-28 md:pb-40"}
-      // La altura extra de la sección es el "camino" que recorre el scroll horizontal.
-      style={anclado ? { height: `calc(100svh + ${recorrido}px)` } : undefined}
-    >
-      {anclado ? (
-        <div className="sticky top-0 flex h-svh flex-col justify-center overflow-hidden pt-16">
-          <motion.div style={{ y: deriva }}>
-            {encabezado}
-            <motion.div ref={pistaRef} style={{ x }} className="flex w-max gap-px px-[clamp(20px,5vw,80px)]">
-              {tarjetas}
-            </motion.div>
-          </motion.div>
-        </div>
-      ) : (
-        <>
-          {encabezado}
-          <div className="no-scrollbar flex snap-x gap-px overflow-x-auto px-[clamp(20px,5vw,80px)]">{tarjetas}</div>
-        </>
-      )}
     </section>
   );
 }

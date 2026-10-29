@@ -8,7 +8,7 @@ import { HomeHero } from "@/components/home/HomeHero";
 import { ImageReveal, Reveal } from "@/components/motion/Reveal";
 import { WordReveal } from "@/components/motion/WordReveal";
 import { ShowroomFinder } from "@/components/showrooms/ShowroomFinder";
-import { beneficios, beneficiosIntro } from "@/data/beneficios";
+import { beneficios } from "@/data/beneficios";
 import { nosotros } from "@/data/home";
 import { site } from "@/data/site";
 import { getColecciones, getShowroomsResumen } from "@/lib/content";
@@ -16,12 +16,20 @@ import { getColecciones, getShowroomsResumen } from "@/lib/content";
 export default function Home() {
   const colecciones = getColecciones();
   const showrooms = getShowroomsResumen();
+  // Las cifras cuentan solo los abiertos (los "próximamente" se listan pero no suman)
+  const abiertos = showrooms.filter((s) => s.estado === "activo").length;
 
   return (
     <>
       <HomeHero slides={colecciones.filter((c) => c.linea === "cocina").slice(0, 5).map((c) => c.hero)} />
 
-      {/* ─── 01 NOSOTROS ──────────────────────────────────── */}
+      {/* ─── 01 COLECCIONES (carrusel con flechas) ────────── */}
+      <ColeccionesScroll colecciones={colecciones.map(({ slug, nombre, bajada, portada }) => ({ slug, nombre, bajada, portada }))} />
+
+      {/* ─── 02 EXPERIENCIA VR: del plano a tu casa ──────── */}
+      <DelPlanoATuCasa />
+
+      {/* ─── 03 NOSOTROS ──────────────────────────────────── */}
       {/* Foto del frente a sangre, con degradé hacia el texto (derecha) y contadores debajo */}
       <section className="container-x pt-24 pb-12 md:pt-36 md:pb-20">
         <div className="relative overflow-hidden bg-surface">
@@ -50,7 +58,7 @@ export default function Home() {
           <div className="relative grid md:min-h-[600px] md:grid-cols-12">
             <div className="flex flex-col justify-center px-6 pb-12 md:col-span-6 md:col-start-7 md:py-20 md:pr-14 md:pl-0">
               <Reveal>
-                <p className="eyebrow">01 — Nosotros</p>
+                <p className="eyebrow">03 — Nosotros</p>
               </Reveal>
               <WordReveal
                 lines={[nosotros.titulo[0], nosotros.titulo[1].split(" ").map((w) => `*${w}*`).join(" ")]}
@@ -76,7 +84,7 @@ export default function Home() {
             {[
               { n: site.cifras.anios, p: "+", l: "Años de experiencia" },
               { n: site.cifras.garantia, p: "", l: "Años de garantía" },
-              { n: showrooms.length, p: "", l: "Showrooms en el país" },
+              { n: abiertos, p: "", l: "Showrooms en el país" },
             ].map((c) => (
               <div key={c.l}>
                 <p className="font-display text-4xl font-extralight md:text-6xl">
@@ -89,23 +97,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ─── 02 COLECCIONES (scroll horizontal anclado) ────── */}
-      <ColeccionesScroll colecciones={colecciones.map(({ slug, nombre, bajada, portada }) => ({ slug, nombre, bajada, portada }))} />
-
-      {/* ─── 03 EXPERIENCIA VR: del plano a tu casa ──────── */}
-      <DelPlanoATuCasa />
-
       {/* ─── 04 BENEFICIOS NEOSTONE ─────────────────────── */}
       <section id="beneficios" className="container-x scroll-mt-20 py-28 md:py-40">
-        <div className="mb-16 grid gap-8 md:grid-cols-12">
-          <p className="eyebrow md:col-span-3">04 — Beneficios Neostone</p>
-          <div className="md:col-span-9">
-            <WordReveal lines={["Más que muebles:", "*un* *respaldo.*"]} className="font-display text-4xl leading-tight font-extralight md:text-6xl" />
-            <Reveal delay={0.2}>
-              <p className="mt-8 max-w-xl leading-relaxed text-fg-soft">{beneficiosIntro}</p>
-            </Reveal>
-          </div>
-        </div>
+        <p className="eyebrow mb-12">04 — Beneficios Neostone</p>
         <BeneficiosLista beneficios={beneficios} />
       </section>
 
@@ -114,7 +108,7 @@ export default function Home() {
         <div className="container-x grid gap-12 py-28 md:grid-cols-12 md:py-36">
           <div className="md:col-span-5">
             <p className="eyebrow">05 — Showrooms</p>
-            <WordReveal lines={[`${showrooms.length} ciudades.`, "*Uno* *cerca* *tuyo.*"]} className="mt-6 font-display text-4xl leading-tight font-extralight md:text-5xl" />
+            <WordReveal lines={[`${abiertos} ciudades.`, "*Uno* *cerca* *tuyo.*"]} className="mt-6 font-display text-4xl leading-tight font-extralight md:text-5xl" />
           </div>
           <div className="md:col-span-6 md:col-start-7 md:pt-4">
             <ShowroomFinder showrooms={showrooms} variante="compacto" />

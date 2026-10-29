@@ -7,6 +7,7 @@ import { ImageReveal, Reveal } from "@/components/motion/Reveal";
 import { WordReveal } from "@/components/motion/WordReveal";
 import { DistanceFromYou } from "@/components/showrooms/DistanceFromYou";
 import { OpenNow } from "@/components/showrooms/OpenNow";
+import { Ampliable, Ampliables } from "@/components/ui/Ampliable";
 import { ImagenPendiente } from "@/components/ui/ImagenPendiente";
 import { site } from "@/data/site";
 import { getShowroom, getShowroomSlugs, showroomsCercanos } from "@/lib/content";
@@ -23,7 +24,7 @@ export async function generateMetadata({ params }: PageProps<"/showrooms/[slug]"
   const { slug } = await params;
   const s = getShowroom(slug);
   if (!s) return {};
-  const descripcion = `Showroom Neostone en ${s.ciudad}, ${s.provincia}. ${s.direccion}. Cocinas, placards y vestidores con 5 años de garantía.`;
+  const descripcion = `Showroom Neostone en ${s.ciudad}, ${s.provincia}.${s.direccion ? ` ${s.direccion}.` : ""} Cocinas, placards y vestidores con 5 años de garantía.`;
   return {
     title: `Showroom ${s.ciudad}`,
     description: descripcion,
@@ -125,10 +126,15 @@ export default async function ShowroomPage({ params }: PageProps<"/showrooms/[sl
                     [
                       "Contacto",
                       <span key="c">
-                        Datos del local próximamente.{" "}
+                        Datos del local próximamente. Para más información, comunicate con{" "}
+                        <Link href="/showrooms/crespo" className="text-fg underline decoration-accent underline-offset-4">
+                          casa central
+                        </Link>{" "}
+                        o{" "}
                         <a href={`https://wa.me/${site.whatsapp}`} target="_blank" rel="noopener" className="text-fg underline decoration-accent underline-offset-4">
-                          Mientras tanto, escribinos.
+                          escribinos por WhatsApp
                         </a>
+                        .
                       </span>,
                     ] as const,
                   ]
@@ -169,9 +175,11 @@ export default async function ShowroomPage({ params }: PageProps<"/showrooms/[sl
             ))}
           </dl>
           <div className="mt-8 flex flex-wrap gap-2">
-            <a href={comoLlegar} target="_blank" rel="noopener" className="btn-outline">
-              Cómo llegar ↗
-            </a>
+            {s.direccion && (
+              <a href={comoLlegar} target="_blank" rel="noopener" className="btn-outline">
+                Cómo llegar ↗
+              </a>
+            )}
             {whatsapp && (
               <a href={`https://wa.me/${whatsapp}`} target="_blank" rel="noopener" className="btn-outline">
                 WhatsApp
@@ -215,6 +223,7 @@ export default async function ShowroomPage({ params }: PageProps<"/showrooms/[sl
         <div className="mb-8 border-b border-line pb-4">
           <h2 className="eyebrow">El showroom</h2>
         </div>
+        <Ampliables fotos={s.galeria.map((src, i) => ({ src, alt: `Showroom ${s.ciudad}, foto ${i + 1}` }))}>
         <div className="grid auto-rows-[180px] grid-cols-2 gap-px md:auto-rows-[240px] md:grid-cols-4">
           {s.galeria.length === 0 &&
             Array.from({ length: 5 }, (_, i) => (
@@ -228,16 +237,19 @@ export default async function ShowroomPage({ params }: PageProps<"/showrooms/[sl
                 delay={(i % 4) * 0.08}
                 className={`group relative overflow-hidden bg-surface ${i === 0 ? "col-span-2 row-span-2" : ""} ${i === 3 ? "md:col-span-2" : ""}`}
               >
-                <Image
-                  src={src}
-                  alt={`Showroom ${s.ciudad}, foto ${i + 1}`}
-                  fill
-                  sizes={i === 0 ? "(min-width: 768px) 50vw, 100vw" : "(min-width: 768px) 25vw, 50vw"}
-                  className="object-cover transition-transform duration-[1400ms] ease-lux group-hover:scale-105"
-                />
+                <Ampliable indice={i} etiqueta={`Showroom ${s.ciudad}, foto ${i + 1}`}>
+                  <Image
+                    src={src}
+                    alt={`Showroom ${s.ciudad}, foto ${i + 1}`}
+                    fill
+                    sizes={i === 0 ? "(min-width: 768px) 50vw, 100vw" : "(min-width: 768px) 25vw, 50vw"}
+                    className="object-cover transition-transform duration-[1400ms] ease-lux group-hover:scale-105"
+                  />
+                </Ampliable>
               </ImageReveal>
             ))}
         </div>
+        </Ampliables>
       </section>
 
       {/* ─── CERCANOS ─────────────────────────────────────── */}

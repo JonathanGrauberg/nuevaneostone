@@ -236,7 +236,8 @@ export const showrooms: ShowroomInput[] = [
       { nombre: "Carolina", rol: "Ventas", foto: asset("carolinat.png") },
     ],
     frente: asset("frente-trelew.png"),
-    galeria: galeria("2025/08", ["1-4", "2-4", "3-4", "4-5", "5-4", "6-3", "7"]),
+    // La foto "1-4" cortaba el cartel ("OSTONE"): la primera de la galería es el frente completo.
+    galeria: [asset("frente-trelew.png"), ...galeria("2025/08", ["2-4", "3-4", "4-5", "5-4", "6-3", "7"])],
   },
   {
     slug: "comodoro-rivadavia",
@@ -339,20 +340,12 @@ export const showrooms: ShowroomInput[] = [
     ciudad: "San Juan",
     provincia: "San Juan",
     nombre: "Neostone San Juan",
-    estado: "activo",
-    // TODO: el texto dice "Av. 122 N° 1210" y el mapa apunta a Av. J. I. de la Roza Oeste 806. Confirmar.
-    direccion: "Espacio San Juan Shopping, local 115",
+    // Showroom nuevo: dirección, fotos y equipo a confirmar. Mientras tanto se atiende desde casa central.
+    estado: "proximamente",
     geo: { lat: -31.5375, lng: -68.5364 }, // aprox.
-    mapsUrl: "https://maps.app.goo.gl/6YFmNvE8K69ipvw38",
-    telefonos: [{ texto: "264 602-0462", numero: "+542646020462" }],
-    email: "neostonesanjuan@neostone.com.ar",
-    horarios: [{ dias: "lun-dom", tramos: ["10:00-22:00"] }],
-    staff: [
-      { nombre: "Paula", rol: "Titular", foto: asset("paula-sj.png") },
-      { nombre: "Amanda", rol: "Ventas", foto: asset("amanda-sj.png") },
-      { nombre: "Víctor", rol: "Ventas", foto: asset("victor-sj.png") },
-    ],
-    // Sin fotos todavía (el sitio anterior mostraba un cartel de "Próximamente"). Cargar las reales acá.
+    telefonos: [],
+    horarios: [],
+    staff: [],
     galeria: [],
   },
   {
@@ -511,18 +504,6 @@ export const showrooms: ShowroomInput[] = [
     galeria: [],
   },
   {
-    slug: "santa-fe",
-    ciudad: "Santa Fe",
-    provincia: "Santa Fe",
-    nombre: "Neostone Santa Fe",
-    estado: "proximamente",
-    geo: { lat: -31.6333, lng: -60.7 }, // aprox.
-    telefonos: [],
-    horarios: [],
-    staff: [],
-    galeria: [],
-  },
-  {
     slug: "neuquen",
     ciudad: "Neuquén",
     provincia: "Neuquén",
@@ -530,34 +511,6 @@ export const showrooms: ShowroomInput[] = [
     estado: "proximamente",
     email: "neostonenqn@gmail.com",
     geo: { lat: -38.9516, lng: -68.0591 }, // aprox.
-    telefonos: [],
-    horarios: [],
-    staff: [],
-    galeria: [],
-  },
-  {
-    slug: "resistencia",
-    ciudad: "Resistencia",
-    provincia: "Chaco",
-    nombre: "Casa Calabria",
-    estado: "activo",
-    whatsapp: "5493625355720",
-    email: "neostoneresistrncia@gmail.com",
-    direccion: "Shopping Sarmiento, local 42, planta baja",
-    geo: { lat: -27.4514, lng: -58.9867 }, // aprox.
-    telefonos: [{ texto: "+54 9 362 535-5720", numero: "+5493625355720" }],
-    horarios: [],
-    staff: [],
-    galeria: [],
-  },
-  {
-    slug: "corrientes",
-    ciudad: "Corrientes",
-    provincia: "Corrientes",
-    nombre: "Neostone Corrientes",
-    estado: "proximamente",
-    email: "odenabonnetarquitectos@gmail.com",
-    geo: { lat: -27.4692, lng: -58.8306 }, // aprox.
     telefonos: [],
     horarios: [],
     staff: [],

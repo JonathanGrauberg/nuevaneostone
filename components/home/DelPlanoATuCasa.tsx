@@ -112,7 +112,7 @@ export function DelPlanoATuCasa() {
 
   const texto = (
     <div className="md:col-span-4">
-      <p className="eyebrow">03 — Experiencia VR</p>
+      <p className="eyebrow">02 — Experiencia VR</p>
       <WordReveal
         lines={["Viví tu cocina", "*antes* *de* *que* *exista.*"]}
         className="mt-6 font-display text-4xl leading-tight font-extralight md:text-5xl"

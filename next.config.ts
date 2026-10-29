@@ -24,6 +24,10 @@ const redirecciones: [string, string][] = [
   ["/showroom-archive/casa-central", "/showrooms/crespo"],
   ["/trelew-2", "/showrooms/trelew"],
   ["/villa-maria-cordoba", "/showrooms/villa-maria"],
+  // Showrooms dados de baja
+  ["/showrooms/santa-fe", "/showrooms"],
+  ["/showrooms/resistencia", "/showrooms"],
+  ["/showrooms/corrientes", "/showrooms"],
   ...[
     "bahia-blanca", "general-villegas", "junin", "mar-del-plata", "pergamino",
     "tres-arroyos", "trelew", "comodoro-rivadavia", "cordoba", "crespo",
