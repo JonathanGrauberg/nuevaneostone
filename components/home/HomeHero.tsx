@@ -28,9 +28,10 @@ export function HomeHero({ slides }: { slides: string[] }) {
           exit={{ opacity: 0 }}
           transition={{ duration: 1.6, ease: easeLux }}
         >
-          <motion.div className="absolute inset-0" initial={{ scale: 1.12 }} animate={{ scale: 1 }} transition={{ duration: 9, ease: "linear" }}>
+          {/* Paneo lento (globals.css); el sentido alterna en cada foto */}
+          <div className={`paneo absolute inset-0 ${i % 2 ? "paneo-izq" : ""}`}>
             <Image src={slides[i]} alt="" fill priority={i === 0} sizes="100vw" quality={90} className="object-cover" />
-          </motion.div>
+          </div>
         </motion.div>
       </AnimatePresence>
 

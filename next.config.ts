@@ -37,8 +37,6 @@ const redirecciones: [string, string][] = [
 
 const nextConfig: NextConfig = {
   images: {
-    // Temporal: las imágenes se sirven desde el WordPress actual hasta migrarlas a /public.
-    remotePatterns: [new URL("https://neostone.com.ar/wp-content/**")],
     qualities: [75, 90],
   },
   async redirects() {

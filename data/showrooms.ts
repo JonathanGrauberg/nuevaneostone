@@ -11,7 +11,7 @@ import type { ShowroomInput } from "@/lib/schemas";
  * - horarios: dias = "lun-vie" | "lun-sab" | "lun-dom" | "sab" | "dom"; tramos "HH:MM-HH:MM".
  * - geo: coordenadas para "showroom más cercano". Las marcadas "aprox." son el centro de la ciudad.
  */
-const galeria = (carpeta: string, archivos: string[]) => archivos.map((a) => wp(`${carpeta}/${a}.png`));
+const galeria = (carpeta: string, archivos: string[]) => archivos.map((a) => wp(`${carpeta}/${a}.jpg`));
 
 export const showrooms: ShowroomInput[] = [
   {
@@ -36,12 +36,12 @@ export const showrooms: ShowroomInput[] = [
       { dias: "sab", tramos: ["8:30-12:30"] },
     ],
     staff: [
-      { nombre: "Alesio", rol: "Ventas", foto: asset("alesio-cc.png") },
-      { nombre: "Juan Cruz", rol: "Ventas", foto: asset("juancruz.png") },
-      { nombre: "Virginia", rol: "Ventas", foto: asset("virginia2.png") },
-      { nombre: "Florencia", rol: "Ventas", foto: asset("Florencia-cc.png") },
+      { nombre: "Alesio", rol: "Ventas", foto: asset("alesio-cc.jpg") },
+      { nombre: "Juan Cruz", rol: "Ventas", foto: asset("juancruz.jpg") },
+      { nombre: "Virginia", rol: "Ventas", foto: asset("virginia2.jpg") },
+      { nombre: "Florencia", rol: "Ventas", foto: asset("Florencia-cc.jpg") },
     ],
-    frente: asset("frente-crespo.png"),
+    frente: asset("frente-crespo.jpg"),
     // ⚠ En el sitio actual Gualeguaychú muestra esta misma galería. Confirmar.
     galeria: galeria("2025/08", ["1-6", "2-6", "3-6", "4-7", "5-6", "6-4", "7-1"]),
   },
@@ -61,8 +61,8 @@ export const showrooms: ShowroomInput[] = [
       { dias: "lun-vie", tramos: ["9:00-13:00", "15:00-19:00"] },
       { dias: "sab", tramos: ["10:00-13:00"] },
     ],
-    staff: [{ nombre: "Noelia y Camila", rol: "Ventas", foto: asset("noeycami.png") }],
-    frente: asset("frente-gchu.png"),
+    staff: [{ nombre: "Noelia y Camila", rol: "Ventas", foto: asset("noeycami.jpg") }],
+    frente: asset("frente-gchu.jpg"),
     // ⚠ Misma galería que Crespo en el sitio actual. Confirmar.
     galeria: galeria("2025/08", ["1-6", "2-6", "3-6", "4-7", "5-6", "6-4", "7-1"]),
   },
@@ -82,11 +82,11 @@ export const showrooms: ShowroomInput[] = [
       { dias: "sab", tramos: ["8:30-12:30"] },
     ],
     staff: [
-      { nombre: "Gabriel Marcolini", rol: "Titular", foto: asset("gabriel-marco.png") },
-      { nombre: "Melisa Culla", rol: "Titular", foto: asset("melisa-culla.png") },
-      { nombre: "Facundo André", rol: "Ventas y Administración", foto: asset("facundo-andre.png") },
-      { nombre: "Natividad Sierra", rol: "Ventas", foto: asset("nati-sierra.png") },
-      { nombre: "Micaela Fernández Valle", rol: "Ventas", foto: asset("mica-fer.png") },
+      { nombre: "Gabriel Marcolini", rol: "Titular", foto: asset("gabriel-marco.jpg") },
+      { nombre: "Melisa Culla", rol: "Titular", foto: asset("melisa-culla.jpg") },
+      { nombre: "Facundo André", rol: "Ventas y Administración", foto: asset("facundo-andre.jpg") },
+      { nombre: "Natividad Sierra", rol: "Ventas", foto: asset("nati-sierra.jpg") },
+      { nombre: "Micaela Fernández Valle", rol: "Ventas", foto: asset("mica-fer.jpg") },
     ],
     // Sin fotos todavía (el sitio anterior mostraba un cartel de "Próximamente"). Cargar las reales acá.
     frente: "/images/showrooms/frentes/bahia-blanca.jpg",
@@ -106,10 +106,10 @@ export const showrooms: ShowroomInput[] = [
     email: "doo.contacto@gmail.com",
     horarios: [{ dias: "lun-vie", tramos: ["8:30-12:30", "16:00-20:00"] }],
     staff: [
-      { nombre: "Dorella", rol: "Titular", foto: asset("dorella.png") },
-      { nombre: "María Noé", rol: "Diseño y Ventas", foto: asset("maria-noe.png") },
+      { nombre: "Dorella", rol: "Titular", foto: asset("dorella.jpg") },
+      { nombre: "María Noé", rol: "Diseño y Ventas", foto: asset("maria-noe.jpg") },
     ],
-    frente: asset("frente-gvillegas.png"),
+    frente: asset("frente-gvillegas.jpg"),
     galeria: galeria("2026/08", ["1", "2", "3", "4"]),
   },
   {
@@ -130,11 +130,11 @@ export const showrooms: ShowroomInput[] = [
       { dias: "sab", tramos: ["8:00-12:00"] },
     ],
     staff: [
-      { nombre: "Matías", rol: "Ventas", foto: asset("matias.png") },
-      { nombre: "Rodrigo y Pablo", rol: "Ventas", foto: asset("rodrigoypablo.png") },
+      { nombre: "Matías", rol: "Ventas", foto: asset("matias.jpg") },
+      { nombre: "Rodrigo y Pablo", rol: "Ventas", foto: asset("rodrigoypablo.jpg") },
     ],
     // En el sitio actual Junín y Pergamino tienen los frentes invertidos; acá ya están corregidos.
-    frente: asset("lopez.png"),
+    frente: asset("lopez.jpg"),
     // ⚠ Galería compartida con Pergamino y Comodoro. Confirmar.
     galeria: galeria("2025/08", ["6", "5", "4", "3", "2", "1"]),
   },
@@ -154,11 +154,11 @@ export const showrooms: ShowroomInput[] = [
       { dias: "sab", tramos: ["9:30-13:00"] },
     ],
     staff: [
-      { nombre: "Flavio", rol: "Socio Gerente", foto: asset("Flavio-mdp.png") },
-      { nombre: "Damián", rol: "Socio Gerente", foto: asset("Damian-mdp.png") },
-      { nombre: "Laura", rol: "Ventas", foto: asset("Laura-mdp.png") },
-      { nombre: "Candela", rol: "Ventas", foto: asset("Candela-mdp.png") },
-      { nombre: "Lara", rol: "Ventas", foto: asset("Lara-mdp.png") },
+      { nombre: "Flavio", rol: "Socio Gerente", foto: asset("Flavio-mdp.jpg") },
+      { nombre: "Damián", rol: "Socio Gerente", foto: asset("Damian-mdp.jpg") },
+      { nombre: "Laura", rol: "Ventas", foto: asset("Laura-mdp.jpg") },
+      { nombre: "Candela", rol: "Ventas", foto: asset("Candela-mdp.jpg") },
+      { nombre: "Lara", rol: "Ventas", foto: asset("Lara-mdp.jpg") },
     ],
     frente: "/images/showrooms/frentes/mar-del-plata.jpg",
     // Sin fotos todavía (el sitio anterior mostraba un cartel de "Próximamente"). Cargar las reales acá.
@@ -182,10 +182,10 @@ export const showrooms: ShowroomInput[] = [
       { dias: "sab", tramos: ["9:00-13:00"] },
     ],
     staff: [
-      { nombre: "Agustina", rol: "Ventas", foto: asset("agus-per.png") },
-      { nombre: "Mariana", rol: "Ventas", foto: asset("mariana-per.png") },
+      { nombre: "Agustina", rol: "Ventas", foto: asset("agus-per.jpg") },
+      { nombre: "Mariana", rol: "Ventas", foto: asset("mariana-per.jpg") },
     ],
-    frente: asset("turco.png"),
+    frente: asset("turco.jpg"),
     // ⚠ Galería compartida con Junín y Comodoro. Confirmar.
     galeria: galeria("2025/08", ["6", "5", "4", "3", "2", "1"]),
   },
@@ -206,9 +206,9 @@ export const showrooms: ShowroomInput[] = [
       { dias: "sab", tramos: ["8:30-12:30"] },
     ],
     staff: [
-      { nombre: "Leonel B.", rol: "Equipo Comercial", foto: asset("leonel-b.png") },
-      { nombre: "Adriel S.", rol: "Equipo Comercial", foto: asset("adriel-s.png") },
-      { nombre: "Agustín S.", rol: "Equipo Comercial", foto: asset("agustin-s.png") },
+      { nombre: "Leonel B.", rol: "Equipo Comercial", foto: asset("leonel-b.jpg") },
+      { nombre: "Adriel S.", rol: "Equipo Comercial", foto: asset("adriel-s.jpg") },
+      { nombre: "Agustín S.", rol: "Equipo Comercial", foto: asset("agustin-s.jpg") },
     ],
     frente: "/images/showrooms/frentes/tres-arroyos.jpg",
     galeria: galeria("2026/04", ["1", "2", "3", "4", "5"]),
@@ -232,13 +232,13 @@ export const showrooms: ShowroomInput[] = [
     ],
     staff: [
       // TODO: la foto se llama "antoniot.png". Confirmar si es Alberto o Antonio.
-      { nombre: "Alberto", rol: "Ventas", foto: asset("antoniot.png") },
-      { nombre: "Carolina", rol: "Ventas", foto: asset("carolinat.png") },
+      { nombre: "Alberto", rol: "Ventas", foto: asset("antoniot.jpg") },
+      { nombre: "Carolina", rol: "Ventas", foto: asset("carolinat.jpg") },
     ],
-    frente: asset("frente-trelew.png"),
+    frente: asset("frente-trelew.jpg"),
     frenteEncuadre: "8% 50%", // el cartel NEOSTONE está a la izquierda
     // La foto "1-4" cortaba el cartel ("OSTONE"): la primera de la galería es el frente completo.
-    galeria: [asset("frente-trelew.png"), ...galeria("2025/08", ["2-4", "3-4", "4-5", "5-4", "6-3", "7"])],
+    galeria: [asset("frente-trelew.jpg"), ...galeria("2025/08", ["2-4", "3-4", "4-5", "5-4", "6-3", "7"])],
   },
   {
     slug: "comodoro-rivadavia",
@@ -257,8 +257,8 @@ export const showrooms: ShowroomInput[] = [
       { dias: "lun-vie", tramos: ["9:00-18:00"] },
       { dias: "sab", tramos: ["9:00-13:00"] },
     ],
-    staff: [{ nombre: "Micaela", rol: "Ventas", foto: asset("julieta-mosseti.jpeg") }],
-    frente: asset("frente-comodoro.png"),
+    staff: [{ nombre: "Micaela", rol: "Ventas", foto: asset("julieta-mosseti.jpg") }],
+    frente: asset("frente-comodoro.jpg"),
     // ⚠ Galería compartida con Junín y Pergamino. Confirmar.
     galeria: galeria("2025/08", ["6", "5", "4", "3", "2", "1"]),
   },
@@ -276,10 +276,10 @@ export const showrooms: ShowroomInput[] = [
     email: "cordoba@neostone.com.ar",
     horarios: [{ dias: "lun-dom", tramos: ["9:00-21:00"] }],
     staff: [
-      { nombre: "Matías C.", rol: "Titular", foto: asset("matias-c.png") },
-      { nombre: "Ileana E.", rol: "Ventas", foto: asset("ileana-e.png") },
-      { nombre: "Paulina D.", rol: "Ventas", foto: asset("paulina-d.png") },
-      { nombre: "Ignacio S.", rol: "Ventas", foto: asset("ignacio-s.png") },
+      { nombre: "Matías C.", rol: "Titular", foto: asset("matias-c.jpg") },
+      { nombre: "Ileana E.", rol: "Ventas", foto: asset("ileana-e.jpg") },
+      { nombre: "Paulina D.", rol: "Ventas", foto: asset("paulina-d.jpg") },
+      { nombre: "Ignacio S.", rol: "Ventas", foto: asset("ignacio-s.jpg") },
     ],
     frente: "/images/showrooms/frentes/cordoba.jpg",
     // Sin fotos todavía (el sitio anterior mostraba un cartel de "Próximamente"). Cargar las reales acá.
@@ -304,9 +304,9 @@ export const showrooms: ShowroomInput[] = [
       { dias: "sab", tramos: ["9:00-13:00"] },
     ],
     staff: [
-      { nombre: "Luisina Mattia", rol: "Propietaria y Arquitecta", foto: asset("luisina-m.png") },
-      { nombre: "Andrés Franco", rol: "Propietario y Administración", foto: asset("andres-f.png") },
-      { nombre: "Franco", rol: "Ventas", foto: asset("franco-vm.png") },
+      { nombre: "Luisina Mattia", rol: "Propietaria y Arquitecta", foto: asset("luisina-m.jpg") },
+      { nombre: "Andrés Franco", rol: "Propietario y Administración", foto: asset("andres-f.jpg") },
+      { nombre: "Franco", rol: "Ventas", foto: asset("franco-vm.jpg") },
     ],
     frente: "/images/showrooms/frentes/villa-maria.jpg",
     // Sin fotos del interior todavía. Cargar las reales acá.
@@ -330,11 +330,11 @@ export const showrooms: ShowroomInput[] = [
       { dias: "sab", tramos: ["9:00-13:00"] },
     ],
     staff: [
-      { nombre: "Leonardo", rol: "Titular", foto: asset("leonardos.png") },
-      { nombre: "Florencia", rol: "Ventas", foto: asset("florencias.png") },
-      { nombre: "Leandro", rol: "Ventas", foto: asset("leandros.png") },
+      { nombre: "Leonardo", rol: "Titular", foto: asset("leonardos.jpg") },
+      { nombre: "Florencia", rol: "Ventas", foto: asset("florencias.jpg") },
+      { nombre: "Leandro", rol: "Ventas", foto: asset("leandros.jpg") },
     ],
-    frente: asset("frente-salta.png"),
+    frente: asset("frente-salta.jpg"),
     galeria: galeria("2025/08", ["5-5", "4-6", "3-5", "2-5", "1-5"]),
   },
   {
@@ -368,7 +368,7 @@ export const showrooms: ShowroomInput[] = [
       { dias: "sab", tramos: ["9:00-13:00"] },
     ],
     staff: [],
-    frente: asset("frente-sanluis.png"),
+    frente: asset("frente-sanluis.jpg"),
     galeria: galeria("2025/08", ["1-1", "2-1", "3-1", "4-1", "5-1", "6-1"]),
   },
   {
@@ -389,11 +389,11 @@ export const showrooms: ShowroomInput[] = [
       { dias: "sab", tramos: ["8:30-12:30"] },
     ],
     staff: [
-      { nombre: "Adrián Cirimele", rol: "Gerente General", foto: asset("cirimele.png") },
-      { nombre: "Romina", rol: "Diseño y Ventas", foto: asset("galante.png") },
-      { nombre: "María Eugenia", rol: "Ventas", foto: asset("mariaeuge.png") },
+      { nombre: "Adrián Cirimele", rol: "Gerente General", foto: asset("cirimele.jpg") },
+      { nombre: "Romina", rol: "Diseño y Ventas", foto: asset("galante.jpg") },
+      { nombre: "María Eugenia", rol: "Ventas", foto: asset("mariaeuge.jpg") },
     ],
-    frente: asset("frente-rosario.png"),
+    frente: asset("frente-rosario.jpg"),
     galeria: galeria("2025/08", ["1-2", "2-2", "3-2", "5-2", "6-2", "4-3"]),
   },
   {
@@ -414,11 +414,11 @@ export const showrooms: ShowroomInput[] = [
       { dias: "sab", tramos: ["10:00-13:00"] },
     ],
     staff: [
-      { nombre: "Emmanuel Alcober", rol: "Socio Gerente", foto: asset("emanuelB.png") },
-      { nombre: "Valentina Turco", rol: "Socia Gerente", foto: asset("valentinaB.png") },
-      { nombre: "Paula López", rol: "Ventas", foto: asset("paulaB.png") },
+      { nombre: "Emmanuel Alcober", rol: "Socio Gerente", foto: asset("emanuelB.jpg") },
+      { nombre: "Valentina Turco", rol: "Socia Gerente", foto: asset("valentinaB.jpg") },
+      { nombre: "Paula López", rol: "Ventas", foto: asset("paulaB.jpg") },
     ],
-    frente: asset("barilocheportada2.png"),
+    frente: asset("barilocheportada2.jpg"),
     galeria: galeria("2026/07", ["1", "2", "3", "4"]),
   },
 

@@ -242,6 +242,28 @@ body {
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.55), 0 2px 18px rgba(0, 0, 0, 0.55);
 }
 
+/* ─── Paneo de las portadas ───
+   Zoom leve + desplazamiento lateral, como una cámara que se corre despacio.
+   Con escala ≥ 1.06 sobra un 3% por lado, así el corrimiento del 2% nunca muestra el borde.
+   Con "reducir movimiento" la regla global deja la imagen quieta en su posición final. */
+.paneo {
+  --desde: -2%;
+  --hasta: 2%;
+  animation: paneo 9s linear both;
+}
+.paneo-izq {
+  --desde: 2%;
+  --hasta: -2%;
+}
+@keyframes paneo {
+  from {
+    transform: translateX(var(--desde)) scale(1.12);
+  }
+  to {
+    transform: translateX(var(--hasta)) scale(1.06);
+  }
+}
+
 /* ─── Íconos de los pilares (beneficios) ───
    Trazo fino en el color del texto y un único detalle en el acento. Se dibujan al montarse
    y después quedan con un movimiento mínimo en loop. */

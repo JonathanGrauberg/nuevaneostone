@@ -68,14 +68,10 @@ export function CollectionsExplorer({ colecciones, inicial }: { colecciones: Col
             exit={{ opacity: 0 }}
             transition={{ duration: 1.4, ease: easeLux }}
           >
-            <motion.div
-              className="absolute inset-0"
-              initial={{ scale: 1.1 }}
-              animate={{ scale: 1 }}
-              transition={{ duration: 9, ease: "linear" }}
-            >
+            {/* Paneo lento (globals.css); el sentido alterna entre colecciones */}
+            <div className={`paneo absolute inset-0 ${idx % 2 ? "paneo-izq" : ""}`}>
               <Image src={c.hero} alt="" fill priority sizes="100vw" quality={90} className="object-cover" />
-            </motion.div>
+            </div>
           </motion.div>
         </AnimatePresence>
 
@@ -222,29 +218,8 @@ export function CollectionsExplorer({ colecciones, inicial }: { colecciones: Col
         </div>
       </div>
 
-      {/* ─── TERMINACIONES ────────────────────────────────── */}
-      <section id="terminaciones" className="container-x scroll-mt-24 pt-24 pb-24">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={c.slug}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.7, ease: easeLux }}
-          >
-            <div className="mb-14 grid gap-6 md:grid-cols-12">
-              <p className="eyebrow md:col-span-3">Terminaciones</p>
-              <h2 className="font-display text-3xl font-extralight md:col-span-9 md:text-5xl">
-                Los colores de <span className="font-normal">{c.nombre}</span>
-              </h2>
-            </div>
-            <FinishesGrid grupos={c.grupos} />
-          </motion.div>
-        </AnimatePresence>
-      </section>
-
-      {/* ─── RENDERS / EDITORIAL ──────────────────────────── */}
-      <section className="border-t border-line py-24">
+      {/* ─── RENDERS / EDITORIAL (primero las imágenes, después los colores) ─── */}
+      <section className="pt-24">
         <AnimatePresence mode="wait">
           <motion.div key={c.slug} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.6 }}>
             <Ampliables fotos={c.renders}>
@@ -274,6 +249,31 @@ export function CollectionsExplorer({ colecciones, inicial }: { colecciones: Col
             </Ampliables>
           </motion.div>
         </AnimatePresence>
+      </section>
+
+      {/* ─── TERMINACIONES ────────────────────────────────── */}
+      <section id="terminaciones" className="container-x scroll-mt-24 pt-24">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={c.slug}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.7, ease: easeLux }}
+          >
+            <div className="mb-14 grid gap-6 border-t border-line pt-24 md:grid-cols-12">
+              <p className="eyebrow md:col-span-3">Terminaciones</p>
+              <h2 className="font-display text-3xl font-extralight md:col-span-9 md:text-5xl">
+                Los colores de <span className="font-normal">{c.nombre}</span>
+              </h2>
+            </div>
+            <FinishesGrid grupos={c.grupos} />
+          </motion.div>
+        </AnimatePresence>
+      </section>
+
+      {/* ─── CTA ──────────────────────────────────────────── */}
+      <section className="pb-24">
         <div className="container-x mt-24 flex flex-col items-start justify-between gap-8 border-t border-line pt-12 md:flex-row md:items-center">
           <p className="font-display text-2xl font-extralight md:text-4xl">
             ¿Te imaginás una <span className="font-normal">{c.nombre}</span> en tu casa?
