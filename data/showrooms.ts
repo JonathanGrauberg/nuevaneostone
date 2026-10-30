@@ -455,6 +455,8 @@ export const showrooms: ShowroomInput[] = [
       { dias: "sab", tramos: ["9:00-13:00"] },
     ],
     staff: [],
+    frente: "/images/showrooms/frentes/san-nicolas.jpg",
+    frenteEncuadre: "38% 50%", // el cartel NEOSTONE está a la izquierda
     galeria: [],
   },
   {
@@ -498,11 +500,13 @@ export const showrooms: ShowroomInput[] = [
     provincia: "Neuquén",
     nombre: "Veta Diseño & Arquitectura",
     estado: "activo",
+    // TODO: el vinilo de la vidriera dice "Las Retamas 443". Confirmar cuál es la dirección.
     direccion: "Osa Mayor 1080",
     geo: { lat: -40.7616, lng: -71.646 }, // aprox.
     telefonos: [],
     horarios: [],
     staff: [],
+    frente: "/images/showrooms/frentes/villa-la-angostura.jpg",
     galeria: [],
   },
   {
