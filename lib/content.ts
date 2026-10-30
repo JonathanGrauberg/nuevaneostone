@@ -91,11 +91,11 @@ export function getColeccion(slug: string) {
 
 // ─── Showrooms ────────────────────────────────────────────────
 
-/** Showrooms visibles (activos y próximamente), casa central primero. */
+/** Showrooms visibles (activos y próximamente): casa central primero y el resto de la A a la Z. */
 export function getShowrooms(): Showroom[] {
   return todosLosShowrooms
     .filter((s) => s.estado !== "cerrado")
-    .sort((a, b) => Number(!!b.casaCentral) - Number(!!a.casaCentral));
+    .sort((a, b) => Number(!!b.casaCentral) - Number(!!a.casaCentral) || a.ciudad.localeCompare(b.ciudad, "es"));
 }
 
 /** Todos los slugs, incluidos los cerrados (para redirigir sus URLs). */
