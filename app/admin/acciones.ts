@@ -2,7 +2,8 @@
 
 import { redirect } from "next/navigation";
 import { cerrarSesion, estaLogueado, iniciarSesion } from "@/lib/admin";
-import { escribirPromo, promoSchema } from "@/lib/promo";
+import { escribirPromo } from "@/lib/promo";
+import { promoSchema } from "@/lib/promoSchema";
 
 export async function entrar(_: string | null, form: FormData) {
   const ok = await iniciarSesion(String(form.get("clave") ?? ""));

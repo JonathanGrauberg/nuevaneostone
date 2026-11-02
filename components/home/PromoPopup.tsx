@@ -4,8 +4,9 @@ import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useState, useSyncExternalStore } from "react";
 import { createPortal } from "react-dom";
 import { easeLux } from "@/components/motion/Reveal";
+import { PromoTarjeta, type PromoContenido } from "@/components/promo/PromoTarjeta";
 
-export type PromoVisible = { id: string; alt: string; imagen: string; imagenCelular?: string; video?: string; videoCelular?: string };
+export type PromoVisible = PromoContenido & { id: string; videoCelular?: string };
 
 const VISTA = "neostone-promo-vista";
 const sinSuscripcion = () => () => {};
@@ -46,7 +47,7 @@ export function PromoPopup() {
   return <PromoModal promo={promo} onCerrar={cerrar} />;
 }
 
-/** El popup en sí (también lo usa /admin para la vista previa). */
+/** El popup en sí: la tarjeta sobre el fondo desenfocado (también lo usa /admin para probarlo). */
 export function PromoModal({ promo, onCerrar }: { promo: PromoVisible | null; onCerrar: () => void }) {
   // El portal se monta recién en el navegador (en el servidor no hay document.body)
   const montado = useSyncExternalStore(sinSuscripcion, () => true, () => false);
@@ -70,18 +71,15 @@ export function PromoModal({ promo, onCerrar }: { promo: PromoVisible | null; on
         <motion.div
           role="dialog"
           aria-modal
-          aria-label={promo.alt}
-          className="fixed inset-0 z-[80] flex items-center justify-center bg-black/60 p-4 backdrop-blur-xl md:p-12"
+          aria-label={promo.titulo}
+          className="fixed inset-0 z-[80] flex items-center justify-center bg-black/50 p-4 backdrop-blur-xl md:p-10"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.5, ease: easeLux }}
           onClick={onCerrar}
         >
-          <Contenido key={promo.id} promo={promo} />
-          <button type="button" className="eyebrow absolute top-5 right-5 !text-white md:top-8 md:right-8" onClick={onCerrar}>
-            Cerrar ✕
-          </button>
+          <Contenido key={promo.id} promo={promo} onCerrar={onCerrar} />
         </motion.div>
       )}
     </AnimatePresence>,
@@ -89,36 +87,36 @@ export function PromoModal({ promo, onCerrar }: { promo: PromoVisible | null; on
   );
 }
 
-/** Imagen de la promo; al tocarla (si tiene video) pasa a reproducir el video. */
-function Contenido({ promo }: { promo: PromoVisible }) {
+/** La tarjeta; con "Ver video" pasa a reproducir el video en el mismo lugar. */
+function Contenido({ promo, onCerrar }: { promo: PromoVisible; onCerrar: () => void }) {
   const [enVideo, setEnVideo] = useState(false);
   // Video vertical en celular (si se cargó); si no, el mismo de escritorio
-  const video = promo.videoCelular && window.matchMedia("(max-width: 767px)").matches ? promo.videoCelular : promo.video;
+  const video = promo.videoCelular && window.matchMedia("(max-width: 767px)").matches ? promo.videoCelular : (promo.video ?? promo.videoCelular);
+
   return (
     <motion.div
-      className="relative"
-      initial={{ opacity: 0, y: 24, scale: 0.97 }}
+      className="relative w-full max-w-[1220px]"
+      initial={{ opacity: 0, y: 24, scale: 0.98 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ duration: 0.7, ease: easeLux, delay: 0.1 }}
       onClick={(e) => e.stopPropagation()}
     >
       {enVideo && video ? (
-        <video src={video} autoPlay controls playsInline className="max-h-[85dvh] max-w-full bg-black" />
+        <div className="relative mx-auto w-fit">
+          <video src={video} autoPlay controls playsInline className="max-h-[85dvh] max-w-full bg-black" />
+          <div className="absolute -top-10 right-0 left-0 flex justify-between">
+            <button type="button" className="eyebrow !text-white" onClick={() => setEnVideo(false)}>
+              ← Volver
+            </button>
+            <button type="button" className="eyebrow !text-white" onClick={onCerrar}>
+              Cerrar ✕
+            </button>
+          </div>
+        </div>
       ) : (
-        <button
-          type="button"
-          onClick={() => video && setEnVideo(true)}
-          className={`block ${video ? "cursor-pointer" : "cursor-default"}`}
-          aria-label={video ? `${promo.alt} — ver video` : promo.alt}
-        >
-          <picture>
-            {promo.imagenCelular && <source media="(max-width: 767px)" srcSet={promo.imagenCelular} />}
-            <img src={promo.imagen} alt={promo.alt} className="max-h-[85dvh] w-auto max-w-full" />
-          </picture>
-          {video && (
-            <span className="eyebrow absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/60 px-4 py-2 !text-white backdrop-blur-md">▶ Ver video</span>
-          )}
-        </button>
+        <div className="max-h-[90dvh] overflow-y-auto shadow-2xl">
+          <PromoTarjeta promo={promo} onCerrar={onCerrar} onVideo={video ? () => setEnVideo(true) : undefined} />
+        </div>
       )}
     </motion.div>
   );
