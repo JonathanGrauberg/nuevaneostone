@@ -17,9 +17,8 @@ export function generateMetadata(): Metadata {
 
 export default function ShowroomsPage() {
   const showrooms = getShowroomsResumen();
-  // Las cifras cuentan solo los abiertos (los "próximamente" se listan pero no suman)
-  const abiertos = showrooms.filter((s) => s.estado === "activo");
-  const provincias = new Set(abiertos.map((s) => s.provincia)).size;
+  // Las cifras cuentan todos los listados: los "próximamente" ya trabajan, solo les falta el local o las fotos
+  const provincias = new Set(showrooms.map((s) => s.provincia)).size;
   return (
     <>
       {/* ─── Portada: paisaje de la Patagonia ─── */}
@@ -35,7 +34,7 @@ export default function ShowroomsPage() {
           <WordReveal
             as="h1"
             trigger="mount"
-            lines={[`${abiertos.length} ciudades.`, "*Uno* *cerca* *tuyo.*"]}
+            lines={[`${showrooms.length} ciudades.`, "*Uno* *cerca* *tuyo.*"]}
             className="mt-5 font-display text-5xl leading-[1.05] font-extralight md:text-7xl"
           />
           <Reveal delay={0.4}>

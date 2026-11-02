@@ -22,7 +22,7 @@ export const showrooms: ShowroomInput[] = [
     razonSocial: "Neostone S.A.",
     casaCentral: true,
     estado: "activo",
-    whatsapp: "5493434575484",
+    whatsapp: "5493434549879",
     direccion: "Santiago Eichhorn 419, Parque Industrial",
     geo: { lat: -32.0286, lng: -60.3069 }, // aprox.
     mapsUrl: "https://maps.app.goo.gl/kQH978p7oGPogM2S7",

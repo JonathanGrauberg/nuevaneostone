@@ -5,6 +5,7 @@ import { ColeccionesScroll } from "@/components/home/ColeccionesScroll";
 import { Counter } from "@/components/home/Counter";
 import { DelPlanoATuCasa } from "@/components/home/DelPlanoATuCasa";
 import { HomeHero } from "@/components/home/HomeHero";
+import { PromoPopup } from "@/components/home/PromoPopup";
 import { ImageReveal, Reveal } from "@/components/motion/Reveal";
 import { WordReveal } from "@/components/motion/WordReveal";
 import { ShowroomFinder } from "@/components/showrooms/ShowroomFinder";
@@ -16,8 +17,8 @@ import { getColecciones, getShowroomsResumen } from "@/lib/content";
 export default function Home() {
   const colecciones = getColecciones();
   const showrooms = getShowroomsResumen();
-  // Las cifras cuentan solo los abiertos (los "próximamente" se listan pero no suman)
-  const abiertos = showrooms.filter((s) => s.estado === "activo").length;
+  // Las cifras cuentan todos los listados: los "próximamente" ya trabajan, solo les falta el local o las fotos
+  const abiertos = showrooms.length;
 
   return (
     <>
@@ -125,6 +126,9 @@ export default function Home() {
           </Link>
         </div>
       </section>
+
+      {/* Promo cargada desde /admin (una vez por visitante) */}
+      <PromoPopup />
     </>
   );
 }
