@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import { nav } from "@/data/site";
+import { nav, site } from "@/data/site";
 import { wp } from "@/lib/img";
 import { easeLux } from "@/components/motion/Reveal";
 import { ThemeToggle } from "./ThemeToggle";
@@ -91,9 +91,10 @@ export function Header() {
               );
             })}
             <ThemeToggle className="text-fg-soft hover:text-fg" />
-            <Link href="/presupuesto" className="btn-outline !py-3">
+            {/* Lleva al mismo WhatsApp que el botón flotante */}
+            <a href={`https://wa.me/${site.whatsapp}`} target="_blank" rel="noopener" className="btn-outline !py-3">
               Presupuesto
-            </Link>
+            </a>
           </nav>
 
           <button
@@ -118,7 +119,7 @@ export function Header() {
             transition={{ duration: 0.8, ease: easeLux }}
           >
             <nav className="flex flex-col">
-              {[...nav, { href: "/presupuesto", label: "Presupuesto" }].map((item, i) => (
+              {[...nav, { href: `https://wa.me/${site.whatsapp}`, label: "Presupuesto" }].map((item, i) => (
                 <motion.div
                   key={item.href}
                   initial={{ opacity: 0, y: 24 }}

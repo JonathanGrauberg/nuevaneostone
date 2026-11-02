@@ -134,7 +134,8 @@ export const showrooms: ShowroomInput[] = [
       { nombre: "Rodrigo y Pablo", rol: "Ventas", foto: asset("rodrigoypablo.jpg") },
     ],
     // En el sitio actual Junín y Pergamino tienen los frentes invertidos; acá ya están corregidos.
-    frente: asset("lopez.jpg"),
+    frente: "/images/showrooms/frentes/junin.jpg",
+    frenteEncuadre: "12% 50%", // el cartel NEOSTONE está a la izquierda
     // ⚠ Galería compartida con Pergamino y Comodoro. Confirmar.
     galeria: galeria("2025/08", ["6", "5", "4", "3", "2", "1"]),
   },
@@ -161,6 +162,7 @@ export const showrooms: ShowroomInput[] = [
       { nombre: "Lara", rol: "Ventas", foto: asset("Lara-mdp.jpg") },
     ],
     frente: "/images/showrooms/frentes/mar-del-plata.jpg",
+    frenteEncuadre: "8% 50%", // el cartel NEOSTONE está a la izquierda
     // Sin fotos todavía (el sitio anterior mostraba un cartel de "Próximamente"). Cargar las reales acá.
     galeria: [],
   },
@@ -185,7 +187,7 @@ export const showrooms: ShowroomInput[] = [
       { nombre: "Agustina", rol: "Ventas", foto: asset("agus-per.jpg") },
       { nombre: "Mariana", rol: "Ventas", foto: asset("mariana-per.jpg") },
     ],
-    frente: asset("turco.jpg"),
+    frente: "/images/showrooms/frentes/pergamino.jpg",
     // ⚠ Galería compartida con Junín y Comodoro. Confirmar.
     galeria: galeria("2025/08", ["6", "5", "4", "3", "2", "1"]),
   },
@@ -258,7 +260,7 @@ export const showrooms: ShowroomInput[] = [
       { dias: "sab", tramos: ["9:00-13:00"] },
     ],
     staff: [{ nombre: "Micaela", rol: "Ventas", foto: asset("julieta-mosseti.jpg") }],
-    frente: asset("frente-comodoro.jpg"),
+    frente: "/images/showrooms/frentes/comodoro-rivadavia.jpg",
     // ⚠ Galería compartida con Junín y Pergamino. Confirmar.
     galeria: galeria("2025/08", ["6", "5", "4", "3", "2", "1"]),
   },
@@ -438,6 +440,7 @@ export const showrooms: ShowroomInput[] = [
     telefonos: [{ texto: "3487 64-0240", numero: "+543487640240" }],
     horarios: [{ dias: "lun-vie", tramos: ["8:00-19:00"] }],
     staff: [],
+    frente: "/images/showrooms/frentes/zarate.jpg",
     galeria: [],
   },
   {
