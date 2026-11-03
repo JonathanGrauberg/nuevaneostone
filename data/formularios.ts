@@ -1,5 +1,5 @@
 /**
- * FORMULARIOS (presupuesto, distribuidores y post venta)
+ * FORMULARIOS (presupuesto, distribuidores, post venta y desarrollos)
  *
  * Mismos campos que tenían los formularios de la web anterior. Al enviar se abre
  * WhatsApp de casa central (site.whatsapp) con los datos ya escritos.
@@ -7,7 +7,9 @@
 export type Campo = {
   id: string;
   etiqueta: string;
-  tipo?: "text" | "email" | "tel" | "textarea";
+  tipo?: "text" | "email" | "tel" | "textarea" | "select";
+  /** Opciones del desplegable (tipo "select") */
+  opciones?: string[];
   requerido?: boolean;
   /** Ocupa las dos columnas en desktop */
   ancho?: boolean;
@@ -58,6 +60,22 @@ export const formularios = {
     bajada: "Si necesitás un ajuste o tenés una consulta sobre tu amoblamiento, escribinos.",
     saludo: "Hola Neostone, necesito el servicio post venta.",
     campos: [...contacto, { id: "comentario", etiqueta: "Comentarios", tipo: "textarea", ancho: true }],
+  },
+  desarrollos: {
+    eyebrow: "05 · Consulta",
+    titulo: ["Contanos tu *próximo*", "*proyecto.*"],
+    bajada: "Un asesor de proyectos se pone en contacto con vos. Si tenés planos, mandalos en la misma conversación de WhatsApp.",
+    saludo: "Hola Neostone, quiero consultar por un desarrollo.",
+    campos: [
+      { id: "nombre", etiqueta: "Nombre y apellido", requerido: true },
+      { id: "empresa", etiqueta: "Empresa" },
+      { id: "rol", etiqueta: "Rol", tipo: "select", requerido: true, opciones: ["Desarrollador", "Constructora", "Estudio de arquitectura", "Inversor", "Otro"] },
+      { id: "ciudad", etiqueta: "Ciudad del proyecto", requerido: true },
+      { id: "telefono", etiqueta: "WhatsApp", tipo: "tel", requerido: true },
+      { id: "email", etiqueta: "Email", tipo: "email", requerido: true },
+      { id: "unidades", etiqueta: "Cantidad de unidades", tipo: "select", opciones: ["Hasta 10", "11 a 30", "31 a 80", "Más de 80"] },
+      { id: "etapa", etiqueta: "Etapa de la obra", tipo: "select", opciones: ["Anteproyecto", "Proyecto aprobado", "En construcción", "En terminaciones"] },
+    ],
   },
 } satisfies Record<string, Formulario>;
 

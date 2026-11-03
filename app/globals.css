@@ -103,6 +103,20 @@ body {
     color: var(--bg);
     border-color: var(--fg);
   }
+  /* Botón lleno en rojo (llamados principales de /desarrollos) */
+  .btn-accent {
+    font-family: var(--font-display);
+    font-size: 11px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    padding: 15px 22px;
+    background: var(--accent);
+    color: #fff;
+    transition: filter 0.4s;
+  }
+  .btn-accent:hover {
+    filter: brightness(1.15);
+  }
   .container-x {
     width: 100%;
     max-width: 1440px;

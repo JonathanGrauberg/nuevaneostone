@@ -37,6 +37,15 @@ export function Formulario({ datos, extra = [] }: { datos: Datos; extra?: string
           </span>
           {c.tipo === "textarea" ? (
             <textarea name={c.id} rows={4} required={c.requerido} className={`${estiloCampo} resize-y`} />
+          ) : c.tipo === "select" ? (
+            <select name={c.id} required={c.requerido} defaultValue="" className={`${estiloCampo} cursor-pointer [&>option]:bg-bg`}>
+              <option value="" disabled>
+                Elegí una opción
+              </option>
+              {c.opciones?.map((o) => (
+                <option key={o}>{o}</option>
+              ))}
+            </select>
           ) : (
             <input name={c.id} type={c.tipo ?? "text"} required={c.requerido} autoComplete="on" className={estiloCampo} />
           )}

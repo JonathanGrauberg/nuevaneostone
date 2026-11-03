@@ -19,7 +19,7 @@ export function VrPresentacion({ video, poster, titulo, puntos }: Props) {
   };
 
   return (
-    <section className="container-x grid items-center gap-14 py-28 md:grid-cols-12 md:py-40">
+    <section id="como-funciona" className="container-x grid scroll-mt-20 items-center gap-14 py-28 md:grid-cols-12 md:py-40">
       <div className="md:col-span-5 md:col-start-2">
         <p className="eyebrow">Experiencia VR</p>
         <WordReveal lines={titulo} className="mt-5 font-display text-4xl leading-tight font-extralight md:text-5xl" />
