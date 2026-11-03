@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import { ProyectosMosaico } from "@/components/desarrollos/ProyectosMosaico";
 import { Formulario } from "@/components/forms/Formulario";
 import { ImageReveal, Reveal } from "@/components/motion/Reveal";
 import { WordReveal } from "@/components/motion/WordReveal";
@@ -81,13 +82,7 @@ export default function DesarrollosPage() {
           </div>
           <Reveal className="max-w-sm leading-relaxed text-fg-soft md:col-span-4 md:col-start-9">{d.proyectos.bajada}</Reveal>
         </div>
-        <div className="mt-14 grid grid-flow-dense auto-rows-[150px] grid-cols-2 gap-2 sm:auto-rows-[200px] md:auto-rows-[260px] md:grid-cols-4">
-          {d.proyectos.fotos.map((f, i) => (
-            <ImageReveal key={f.imagen} delay={(i % 4) * 0.08} className={`relative overflow-hidden bg-surface ${f.forma === "alto" ? "row-span-2" : "col-span-2"}`}>
-              <Image src={f.imagen} alt="Desarrollo equipado por Neostone" fill sizes={f.forma === "alto" ? "(min-width: 768px) 25vw, 50vw" : "(min-width: 768px) 50vw, 100vw"} className="object-cover" />
-            </ImageReveal>
-          ))}
-        </div>
+        <ProyectosMosaico lista={d.proyectos.lista} visibles={d.proyectos.visibles} />
       </section>
 
       {/* ─── 02 En cada unidad ─── */}
