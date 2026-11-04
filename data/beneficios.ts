@@ -28,13 +28,14 @@ export const beneficios: Beneficio[] = [
     texto: [
       "Respaldamos nuestra experiencia con una garantía real. Somos fabricantes de todos nuestros amoblamientos y supervisamos cada proceso de producción bajo normas de calidad estrictas.",
       "Utilizamos materiales y herrajes de primera línea. Con Neostone no sólo obtenés muebles: obtenés confianza, calidad, innovación y un respaldo escrito de 5 años.",
+      "Los amoblamientos producidos bajo normas de calidad garantizan que el mobiliario residencial o comercial ha sido sometido a rigurosos controles de seguridad, durabilidad, estabilidad y sostenibilidad medioambiental.",
     ],
   },
   {
     titulo: "Virtual Experience",
     icono: "virtual",
     texto: [
-      "Con nuestra tecnología exclusiva podés anticipar tu amoblamiento: visualizar en escala real el diseño de tu cocina, vestidor o espacio.",
+      "Primera empresa en tener realidad virtual exclusiva en los muebles. Con nuestra tecnología podés anticipar tu amoblamiento: visualizar en escala real el diseño de tu cocina, vestidor o espacio.",
       "Interactuás con el mobiliario: abrís cajones, observás texturas, colores y acabados, y movés objetos para comprobar la funcionalidad y el diseño.",
     ],
   },
