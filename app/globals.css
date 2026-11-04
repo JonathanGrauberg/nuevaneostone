@@ -139,6 +139,77 @@ body {
   filter: invert(1);
 }
 
+/* Desarrollos: animaciones ligadas al scroll (maqueta). Donde el navegador no soporta
+   animation-timeline, todo queda visible y quieto. */
+@keyframes sd-up {
+  from {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+}
+@keyframes sd-draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes sd-grow {
+  from {
+    transform: scaleX(0);
+  }
+}
+@keyframes sd-pulse {
+  50% {
+    opacity: 0.35;
+    transform: scale(1.9);
+  }
+}
+.sd-pulse {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: sd-pulse 2.4s ease-in-out infinite;
+}
+.sd-grow {
+  transform-origin: left center;
+}
+@supports (animation-timeline: view()) {
+  .sd-up {
+    animation: sd-up linear both;
+    animation-timeline: view();
+    animation-range: entry 5% cover 35%;
+  }
+  /* Escalonado: cada hijo arranca un poco después que el anterior */
+  .sd-stagger > :nth-child(2) { animation-range: entry 10% cover 40%; }
+  .sd-stagger > :nth-child(3) { animation-range: entry 15% cover 45%; }
+  .sd-stagger > :nth-child(4) { animation-range: entry 20% cover 50%; }
+  .sd-stagger > :nth-child(5) { animation-range: entry 25% cover 55%; }
+  .sd-stagger > :nth-child(6) { animation-range: entry 30% cover 60%; }
+  .sd-stagger > :nth-child(7) { animation-range: entry 35% cover 65%; }
+  .sd-draw path,
+  .sd-draw circle:not(.sd-pulse) {
+    stroke-dasharray: 1;
+    animation: sd-draw linear both;
+    animation-timeline: view();
+    animation-range: entry 15% cover 45%;
+  }
+  .sd-grow {
+    animation: sd-grow linear both;
+    animation-timeline: view();
+    animation-range: entry 20% cover 55%;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sd-up,
+  .sd-grow,
+  .sd-pulse,
+  .sd-draw * {
+    animation: none !important;
+    stroke-dasharray: none !important;
+  }
+}
+
 /* Scroll horizontal sin barra visible (índice de colecciones). */
 .no-scrollbar {
   scrollbar-width: none;

@@ -62,19 +62,19 @@ export const formularios = {
     campos: [...contacto, { id: "comentario", etiqueta: "Comentarios", tipo: "textarea", ancho: true }],
   },
   desarrollos: {
-    eyebrow: "05 · Consulta",
+    eyebrow: "04 · Consulta",
     titulo: ["Contanos tu *próximo*", "*proyecto.*"],
     bajada: "Un asesor de proyectos se pone en contacto con vos. Si tenés planos, mandalos en la misma conversación de WhatsApp.",
     saludo: "Hola Neostone, quiero consultar por un desarrollo.",
     campos: [
       { id: "nombre", etiqueta: "Nombre y apellido", requerido: true },
       { id: "empresa", etiqueta: "Empresa" },
-      { id: "rol", etiqueta: "Rol", tipo: "select", requerido: true, opciones: ["Desarrollador", "Constructora", "Estudio de arquitectura", "Inversor", "Otro"] },
+      { id: "rol", etiqueta: "Rol", tipo: "select", requerido: true, opciones: ["Desarrollista", "Constructora", "Estudio de arquitectura", "Otro"] },
       { id: "ciudad", etiqueta: "Ciudad del proyecto", requerido: true },
       { id: "telefono", etiqueta: "WhatsApp", tipo: "tel", requerido: true },
       { id: "email", etiqueta: "Email", tipo: "email", requerido: true },
       { id: "unidades", etiqueta: "Cantidad de unidades", tipo: "select", opciones: ["Hasta 10", "11 a 30", "31 a 80", "Más de 80"] },
-      { id: "etapa", etiqueta: "Etapa de la obra", tipo: "select", opciones: ["Anteproyecto", "Proyecto aprobado", "En construcción", "En terminaciones"] },
+      { id: "etapa", etiqueta: "Etapa de la obra", tipo: "select", opciones: ["En proyecto", "En pozo", "Estructura", "Terminaciones"] },
     ],
   },
 } satisfies Record<string, Formulario>;
