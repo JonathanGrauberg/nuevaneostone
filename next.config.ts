@@ -19,6 +19,10 @@ const redirecciones: [string, string][] = [
   ["/quiero-ser-distribuidor", "/distribuidores"],
   ["/servicio-post-venta", "/postventa"],
   ["/contacto", "/presupuesto"],
+  // Login del WordPress viejo: los distribuidores lo tienen guardado para entrar a /programacion
+  ["/wp-login.php", "/programacion"],
+  ["/wp-admin", "/programacion"],
+  ["/wp-admin/:resto*", "/programacion"],
   ["/showroomsdemo", "/showrooms"],
   ["/casa-neostone", "/showrooms/crespo"],
   ["/showroom-archive/casa-central", "/showrooms/crespo"],
