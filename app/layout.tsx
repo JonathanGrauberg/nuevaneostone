@@ -24,6 +24,17 @@ export const metadata: Metadata = {
   title: { default: `${site.nombre} · ${site.lema}`, template: `%s · ${site.nombre}` },
   description: site.descripcion,
   openGraph: { siteName: site.nombre, locale: "es_AR", type: "website" },
+  // Isotipo en la pestaña: oscuro si el navegador está en modo claro y claro si está en modo oscuro.
+  // favicon.ico (oscuro) queda para navegadores que no leen el media.
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icono-claro.png", type: "image/png", media: "(prefers-color-scheme: light)" },
+      { url: "/icono-oscuro.png", type: "image/png", media: "(prefers-color-scheme: dark)" },
+    ],
+    // Ícono al agregar la web a la pantalla de inicio del celular
+    apple: "/apple-icon.png",
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
