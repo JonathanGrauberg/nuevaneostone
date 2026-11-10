@@ -139,6 +139,14 @@ body {
   filter: invert(1);
 }
 
+/* Crédito del footer: versión del logo de Webi según el tema. */
+:root[data-theme="light"] .webi-oscuro {
+  display: none;
+}
+:root[data-theme="light"] .webi-claro {
+  display: inline;
+}
+
 /* Desarrollos: animaciones ligadas al scroll (maqueta). Donde el navegador no soporta
    animation-timeline, todo queda visible y quieto. */
 @keyframes sd-up {

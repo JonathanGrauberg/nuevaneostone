@@ -41,7 +41,7 @@ export const coleccionSchema = z.object({
 
 export const provincias = [
   "Buenos Aires", "Catamarca", "Chaco", "Chubut", "Córdoba", "Corrientes", "Entre Ríos", "Neuquén",
-  "Río Negro", "Salta", "San Juan", "San Luis", "Santa Cruz", "Santa Fe",
+  "Río Negro", "Salta", "San Juan", "San Luis", "Santa Cruz", "Santa Fe", "Santiago del Estero",
 ] as const;
 
 export const dias = ["lun-vie", "lun-sab", "lun-dom", "sab", "dom"] as const;

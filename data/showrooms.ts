@@ -72,20 +72,18 @@ export const showrooms: ShowroomInput[] = [
     provincia: "Buenos Aires",
     nombre: "Habitare",
     estado: "activo",
-    mapsUrl: "https://maps.app.goo.gl/bWh7Ud9MBZUZcLUr5",
+    mapsUrl: "https://maps.app.goo.gl/Ssqh7Ay7pbhNvSLN8",
     direccion: "Dorrego 532",
     geo: { lat: -38.7196, lng: -62.2724 }, // aprox.
     telefonos: [],
-    email: "bahiablanca@neostone.com.ar",
+    email: "neostonebhi@gmail.com",
     horarios: [
-      { dias: "lun-vie", tramos: ["8:00-12:00", "15:30-19:30"] },
-      { dias: "sab", tramos: ["8:30-12:30"] },
+      { dias: "lun-vie", tramos: ["8:00-18:00"] },
+      { dias: "sab", tramos: ["9:00-13:00"] },
     ],
     staff: [
       { nombre: "Gabriel Marcolini", rol: "Titular", foto: asset("gabriel-marco.jpg") },
       { nombre: "Melisa Culla", rol: "Titular", foto: asset("melisa-culla.jpg") },
-      { nombre: "Facundo André", rol: "Ventas y Administración", foto: asset("facundo-andre.jpg") },
-      { nombre: "Natividad Sierra", rol: "Ventas", foto: asset("nati-sierra.jpg") },
       { nombre: "Micaela Fernández Valle", rol: "Ventas", foto: asset("mica-fer.jpg") },
     ],
     // Sin fotos todavía (el sitio anterior mostraba un cartel de "Próximamente"). Cargar las reales acá.
@@ -321,12 +319,12 @@ export const showrooms: ShowroomInput[] = [
     nombre: "Disegno Di Noi",
     razonSocial: "Disegno Di Noi S.R.L.",
     estado: "activo",
-    direccion: "Av. Belgrano 2019",
+    direccion: "Av. Belgrano 2010",
     geo: { lat: -24.7859, lng: -65.4232 }, // aprox.
-    mapsUrl: "https://maps.app.goo.gl/hWJdYq2gcivwqCL77",
+    mapsUrl: "https://www.google.com/maps/search/?api=1&query=Av.+Belgrano+2010,+Salta",
     telefonos: [{ texto: "+54 9 387 212-0409", numero: "+5493872120409" }],
     whatsapp: "5493872120409",
-    email: "leotorralvo@disegnosrl.com",
+    email: "ventas@disegnosrl.com",
     horarios: [
       { dias: "lun-vie", tramos: ["9:00-18:00"] },
       { dias: "sab", tramos: ["9:00-13:00"] },
@@ -409,11 +407,11 @@ export const showrooms: ShowroomInput[] = [
     direccion: "Elflein 976",
     geo: { lat: -41.1335, lng: -71.3103 }, // aprox.
     mapsUrl: "https://maps.app.goo.gl/tnCDzTYxBqPNyiat9",
-    telefonos: [{ texto: "2944 89-3669", numero: "+542944893669" }],
+    telefonos: [{ texto: "+54 9 2944 26-1927", numero: "+5492944261927" }],
     email: "bariloche@neostone.com.ar",
     horarios: [
-      { dias: "lun-vie", tramos: ["10:00-17:00"] },
-      { dias: "sab", tramos: ["10:00-13:00"] },
+      { dias: "lun-vie", tramos: ["10:00-18:00"] },
+      { dias: "sab", tramos: ["9:00-13:00"] },
     ],
     staff: [
       { nombre: "Emmanuel Alcober", rol: "Socio Gerente", foto: asset("emanuelB.jpg") },
@@ -447,7 +445,7 @@ export const showrooms: ShowroomInput[] = [
     slug: "san-nicolas",
     ciudad: "San Nicolás",
     provincia: "Buenos Aires",
-    nombre: "Cúbica",
+    nombre: "Cubica",
     estado: "activo",
     email: "cubica.sn@gmail.com",
     direccion: "Savio 77",
@@ -503,11 +501,14 @@ export const showrooms: ShowroomInput[] = [
     provincia: "Neuquén",
     nombre: "Veta Diseño & Arquitectura",
     estado: "activo",
-    // TODO: el vinilo de la vidriera dice "Las Retamas 443". Confirmar cuál es la dirección.
-    direccion: "Osa Mayor 1080",
+    whatsapp: "5493513923998",
+    direccion: "Las Retamas 443",
     geo: { lat: -40.7616, lng: -71.646 }, // aprox.
-    telefonos: [],
-    horarios: [],
+    telefonos: [{ texto: "+54 9 3513 92-3998", numero: "+5493513923998" }],
+    horarios: [
+      { dias: "lun-vie", tramos: ["10:00-18:00"] },
+      { dias: "sab", tramos: ["9:00-13:00"] },
+    ],
     staff: [],
     frente: "/images/showrooms/frentes/villa-la-angostura.jpg",
     galeria: [],
@@ -518,8 +519,20 @@ export const showrooms: ShowroomInput[] = [
     provincia: "Neuquén",
     nombre: "Neostone Neuquén",
     estado: "proximamente",
+    direccion: "Salta 230",
     email: "neostonenqn@gmail.com",
     geo: { lat: -38.9516, lng: -68.0591 }, // aprox.
+    telefonos: [],
+    horarios: [],
+    staff: [],
+    galeria: [],
+  },  {
+    slug: "santiago-del-estero",
+    ciudad: "Santiago del Estero",
+    provincia: "Santiago del Estero",
+    nombre: "Neostone Santiago del Estero",
+    estado: "proximamente",
+    geo: { lat: -27.7951, lng: -64.2615 }, // aprox.
     telefonos: [],
     horarios: [],
     staff: [],

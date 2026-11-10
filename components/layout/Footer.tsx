@@ -82,6 +82,20 @@ export function Footer() {
         <p>© {new Date().getFullYear()} Neostone S.A. · Crespo, Entre Ríos</p>
         <p>5 años de garantía en todos nuestros amoblamientos</p>
       </div>
+      <div className="container-x -mt-4 pb-6">
+        <a
+          href="https://webistudio.net"
+          target="_blank"
+          rel="noopener"
+          className="group inline-flex items-center gap-1.5 text-[11px] text-muted/70 transition-colors hover:text-fg-soft"
+        >
+          Desarrollado por
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/webi-blanco.png" alt="Webi" width={38} height={12} className="webi-oscuro h-3 w-auto opacity-60 transition-opacity group-hover:opacity-100" />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/webi-negro.png" alt="Webi" width={38} height={12} className="webi-claro hidden h-3 w-auto opacity-60 transition-opacity group-hover:opacity-100" />
+        </a>
+      </div>
     </footer>
   );
 }
