@@ -72,7 +72,7 @@ export const showrooms: ShowroomInput[] = [
     provincia: "Buenos Aires",
     nombre: "Habitare",
     estado: "activo",
-    mapsUrl: "https://maps.app.goo.gl/Ssqh7Ay7pbhNvSLN8",
+    mapsUrl: "https://maps.app.goo.gl/DER3Qqr7FcW1ok1g6",
     direccion: "Dorrego 532",
     geo: { lat: -38.7196, lng: -62.2724 }, // aprox.
     telefonos: [],
@@ -175,7 +175,7 @@ export const showrooms: ShowroomInput[] = [
     direccion: "Florencio Sánchez esq. Castelli",
     geo: { lat: -33.8895, lng: -60.5736 }, // aprox.
     mapsUrl: "https://share.google/69gUD81HNLyXFgUsv",
-    telefonos: [{ texto: "02477 42-6219", numero: "+542477426219" }],
+    telefonos: [{ texto: "+54 9 2477 55-1198", numero: "+5492477551198" }],
     email: "marmolesturco@hotmail.com.ar",
     horarios: [
       { dias: "lun-vie", tramos: ["8:00-16:00"] },
@@ -525,6 +525,7 @@ export const showrooms: ShowroomInput[] = [
     telefonos: [],
     horarios: [],
     staff: [],
+    frente: "/images/showrooms/frentes/neuquen.jpg",
     galeria: [],
   },  {
     slug: "santiago-del-estero",
