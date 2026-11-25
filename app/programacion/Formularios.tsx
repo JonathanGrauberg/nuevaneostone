@@ -101,7 +101,17 @@ export function Sucursales({ lista }: { lista: Sucursal[] }) {
               <span className="block">{s.nombre || s.usuario}</span>
               <span className="text-sm text-white/50">{s.usuario}</span>
             </span>
-            <span className="flex gap-5 text-sm">
+            <span className="flex flex-wrap gap-x-5 gap-y-1 text-sm">
+              {!s.editor && (
+                <a
+                  href={`/programacion/exportar?formato=invitacion&usuario=${encodeURIComponent(s.usuario)}`}
+                  target="_blank"
+                  rel="noopener"
+                  className="text-white/70 hover:text-white"
+                >
+                  Ver tarjeta
+                </a>
+              )}
               <button type="button" onClick={() => setElegida(s)} className="text-white/70 hover:text-white">
                 Cambiar contraseña
               </button>
