@@ -51,7 +51,17 @@ export function Sucursales({ lista }: { lista: Sucursal[] }) {
 
   return (
     <div className="mx-auto mt-16 max-w-3xl border-t border-white/20 pt-12 text-left">
-      <p className="eyebrow !text-white/60">Sucursales con acceso ({lista.length})</p>
+      <div className="flex flex-wrap items-center justify-between gap-4">
+        <p className="eyebrow !text-white/60">Sucursales con acceso ({lista.length})</p>
+        <span className="flex gap-5 text-sm">
+          <a href="/programacion/exportar?formato=excel" className="text-white/70 underline-offset-4 hover:text-white hover:underline">
+            Descargar Excel
+          </a>
+          <a href="/programacion/exportar?formato=pdf" target="_blank" rel="noopener" className="text-white/70 underline-offset-4 hover:text-white hover:underline">
+            Descargar PDF
+          </a>
+        </span>
+      </div>
 
       <form
         key={elegida?.usuario ?? "nueva"}
