@@ -6,18 +6,22 @@ import { listadoConClaves, sesionActual } from "@/lib/programacion";
  * Listado de usuarios y contraseñas de /programacion, solo para casa central.
  *   ?formato=excel → .csv que abre directo en Excel
  *   ?formato=pdf   → página lista para imprimir / "Guardar como PDF"
+ *   &central=1     → incluye a casa central en el listado (por defecto no figura)
  *   ?formato=invitacion&usuario=x → tarjeta de bienvenida para mandarle a esa sucursal
  */
 export async function GET(request: Request) {
   const sesion = await sesionActual();
   if (!sesion?.editor) return new Response("Sin permiso", { status: 403 });
 
-  const filas = await listadoConClaves();
+  const params = new URL(request.url).searchParams;
+  const todas = await listadoConClaves();
+  // Casa central solo figura en el listado si se pide (?central=1); por defecto se comparte sin ella
+  const filas = params.get("central") === "1" ? todas : todas.filter((f) => !f.editor);
   const sinClave = "(no disponible: volver a cargarla)";
   const hoy = new Date().toLocaleDateString("es-AR", { timeZone: "America/Argentina/Buenos_Aires" });
   const sinCache = { "Cache-Control": "no-store", "X-Robots-Tag": "noindex" };
 
-  if (new URL(request.url).searchParams.get("formato") === "excel") {
+  if (params.get("formato") === "excel") {
     // Separador ";" y BOM: así Excel en español lo abre en columnas y con acentos
     const celda = (v: string) => `"${v.replace(/"/g, '""')}"`;
     const csv = [["Sucursal", "Usuario", "Contraseña"], ...filas.map((f) => [f.nombre, f.usuario, f.clave ?? sinClave])]
@@ -38,9 +42,8 @@ export async function GET(request: Request) {
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Roboto+Mono:wght@500&display=swap" rel="stylesheet">`;
   const imprimir = `<script>addEventListener("load",()=>document.fonts.ready.then(()=>setTimeout(print,400)))</script>`;
 
-  const params = new URL(request.url).searchParams;
   if (params.get("formato") === "invitacion") {
-    const f = filas.find((x) => x.usuario === (params.get("usuario") ?? "").toLowerCase());
+    const f = todas.find((x) => x.usuario === (params.get("usuario") ?? "").toLowerCase());
     if (!f) return new Response("No existe ese usuario", { status: 404 });
     if (f.clave === null)
       return new Response(`La contraseña de ${f.usuario} no se puede recuperar. Volvé a cargarla con "Cambiar contraseña" y generá la invitación de nuevo.`, {
