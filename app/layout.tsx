@@ -1,3 +1,4 @@
+import { GoogleTagManager } from "@next/third-parties/google";
 import type { Metadata } from "next";
 import { Montserrat, Roboto } from "next/font/google";
 import { Footer } from "@/components/layout/Footer";
@@ -43,6 +44,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
+      {/* Google Tag Manager de Neostone: las etiquetas (Analytics, Ads, etc.) se configuran desde tagmanager.google.com */}
+      <GoogleTagManager gtmId="GTM-5ZLH9S7J" />
       <body className="flex min-h-dvh flex-col">
         <Header />
         <main className="flex-1">{children}</main>
